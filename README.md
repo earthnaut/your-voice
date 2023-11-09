@@ -9,8 +9,8 @@
 1. `git branch [branch 이름]` : [branch 이름]이라는 브랜치를 새로 만들기
 2. `git checkout [branch 이름]` : [branch 이름]으로 이동하기
 
-알림! 새 기능을 만들 때마다 각 branch를 생성합니다.
-기능 구현이 끝나면 branch를 닫습니다.
+알림! 새 기능을 만들 때마다 각 branch를 생성합니다. (예: django-home-video-upload)  
+기능 구현이 끝나면 main에 pull request하고 branch를 닫습니다. ([main에 병합하기 참고](#main에-병합하기))
 <br>
 
 ### git hub에 올리기

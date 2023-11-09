@@ -1,0 +1,12 @@
+# prettier (VScode extension - html 등 코드 형식 자동으로 맞춰줌) 설정 파일
+.prettierrc
+
+# 개발서버 관련 파일
+__pycache__/
+*.pyc
+*.pyo
+*.db
+migrations/
+
+# 로컬 설정 파일
+django_your_voice/django_your_voice/settings/prod.py

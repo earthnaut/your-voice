@@ -50,4 +50,12 @@ VScode extention 중 gitlens를 이용하면 코드를 직접 수정할 필요 �
 
 주의! 여러 팀원이 동시에 pull request하지 않습니다.  
 마스터는 한사람씩 봐주며 최신 상태의 main을 유지하고, main이 꼬이지 않게 유지합니다.  
-(능숙한 마스터라면 꼬여도 풀 수 있겠지만 초보자라 쉽게 엄두가 안 남)
+(능숙한 마스터라면 꼬여도 풀 수 있겠지만 초보자라 쉽게 엄두가 안 남)  
+<br>
+
+### branch 닫기
+1. `git checkout main` : 닫으려는 브랜치가 아닌 다른 브랜치 (예: main)로 이동
+2. `git branch -d [branch 이름]` : 로컬(내컴퓨터) 브랜치 닫기
+3. `git push origin --delete [branch 이름]` : 원격(깃허브) 브랜치 닫기
+4. `git fetch --prune` : 로컬과 원격 동기화
+   

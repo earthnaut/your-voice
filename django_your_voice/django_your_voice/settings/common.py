@@ -104,10 +104,27 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+   BASE_DIR / 'static',
+]
+# 개발시 각 앱에서 사용되는 static 디렉토리
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# 배포시 각 앱의 static 파일들을 모아서 한 폴더에 넣은 디렉토리
+# collectstatic 명령으로 각 앱의 static 디렉토리를 staticfiles라는 디렉토리 한 곳에 뭉침
+# 그러나 우리는 걍 BASE_DIR/static에 직접 다 때려넣고 쓸 거임
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

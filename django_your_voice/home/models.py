@@ -22,6 +22,7 @@ class Audio(models.Model):
 class Caption(models.Model):
     id = models.AutoField(primary_key=True)
     video_id = models.ForeignKey(Video, on_delete=models.CASCADE)
+    speakers = models.TextField() # 철수;영희;길동; 이런식으로 받기
     caption_speacker = models.FileField(upload_to="results/caption_speacker")
     caption_speech = models.FileField(upload_to="results/caption_speech")
     caption_background = models.FileField(upload_to="results/caption_background")

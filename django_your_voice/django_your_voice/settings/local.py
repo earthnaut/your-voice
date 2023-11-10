@@ -14,9 +14,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": 'your_voice',
-        'USER': 'admin',
-        'PASSWORD': '000000',
+        'USER': 'root',
+        'PASSWORD': '9999',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '9999',
     }
 }

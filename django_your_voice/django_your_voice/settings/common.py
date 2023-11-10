@@ -113,3 +113,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+# 미디어 파일이 저장될 디렉리 경로
+MEDIA_ROOT = BASE_DIR / "media"  # BASE_DIR은 프로젝트 루트 디렉토리를 가리킵니다.
+
+# 미디어 파일의 URL 경로
+MEDIA_URL = "/media/"

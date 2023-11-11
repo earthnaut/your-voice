@@ -13,7 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 이 경로는 settings.py로 있을 때 경로임
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 지금은 settings라는 폴더 안에 common.py로 존재하니까 경로를 하나 더 올라가야 함
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -113,7 +118,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-   BASE_DIR / 'static',
+   BASE_DIR / 'home/static',
 ]
 # 개발시 각 앱에서 사용되는 static 디렉토리
 

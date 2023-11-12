@@ -276,11 +276,11 @@ pk = {
 
       if (video.paused) {
         video.play();
-        $(this).html('<i class="fa fa-pause"></i> Pause Video');
+        $(this).html('<i class="fa fa-pause"></i> 멈춤');
         parent.addClass('state-play');
       } else {
         video.pause();
-        $(this).html('<i class="fa fa-play"></i> Play Video');
+        $(this).html('<i class="fa fa-play"></i> 재생');
         parent.removeClass('state-play');
       }
     });

@@ -16,22 +16,40 @@
                 data-ride="carousel"
             >
                 <ol class="carousel-indicators">
+                    <!-- 왜 .active 색깔 안바뀌지?
+                        1. paper-kit.css에서 .carousel-indicators .active를 #6bd098로
+                        2. paper-kit.min.css에서 .carousel-indicators .active를 #6bd098로
+                        3. paper-kit.css.map에서 .carousel-indicators .active를 success-color로
+                        4. 본문에서 class="carousel-item active" style="background-color: #6bd098"로 바꿔도 안됨
+                        오오오오오오
+                        5. data-target="#carouselExampleIndicators"
+                        data-slide-to="0"
+                        class="active"
+                        style="background-color: #6bd098"
+                        여기서 바꿨더니 됨-->
+
                     <li
                         data-target="#carouselExampleIndicators"
                         data-slide-to="0"
                         class="active"
+                        style="background-color: #fff"
                     ></li>
                     <li
                         data-target="#carouselExampleIndicators"
                         data-slide-to="1"
+                        style="background-color: #fff"
                     ></li>
                     <li
                         data-target="#carouselExampleIndicators"
                         data-slide-to="2"
+                        style="background-color: #fff"
                     ></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
+                    <div
+                        class="carousel-item active"
+                        style="background-color: #6bd098"
+                    >
                         <div
                             class="page-header"
                             style="
@@ -49,38 +67,55 @@
                                             <h5>너의 이름은 | 외국어</h5>
                                             <h5>남은 예상시간 00시 00분</h5>
                                             <br />
-                                            <div class="buttons">
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-danger btn-round btn-lg"
-                                                >
-                                                    Read More
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-twitter"
-                                                    ></i>
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-facebook-square"
-                                                    ></i>
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-get-pocket"
-                                                    ></i>
-                                                </a>
+                                            <div
+                                                id="sliderRegular"
+                                                class="slider noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"
+                                            >
+                                                <div class="noUi-base">
+                                                    <div
+                                                        class="noUi-connects"
+                                                    ></div>
+                                                    <div
+                                                        class="noUi-origin"
+                                                        style="
+                                                            transform: translate(
+                                                                -794.444%,
+                                                                0px
+                                                            );
+                                                            z-index: 4;
+                                                        "
+                                                    >
+                                                        <div
+                                                            class="noUi-handle noUi-handle-lower"
+                                                            data-handle="0"
+                                                            tabindex="0"
+                                                            role="slider"
+                                                            aria-orientation="horizontal"
+                                                            aria-valuemin="0.0"
+                                                            aria-valuemax="100.0"
+                                                            aria-valuenow="20.6"
+                                                            aria-valuetext="20.56"
+                                                        >
+                                                            <div
+                                                                class="noUi-touch-area"
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mt-5 text-left">
+                                            <a
+                                                href="/select-speaker/"
+                                                class="btn btn-outline-neutral btn-round btn-lg"
+                                            >
+                                                등장인물 이름 설정
+                                                <i
+                                                    class="nc-icon nc-minimal-right"
+                                                ></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,41 +142,57 @@
                                             <h5>너의 이름은 | 외국어</h5>
                                             <h5>남은 예상시간 00시 00분</h5>
                                             <br />
-                                            <h6>Connect with us:</h6>
-                                            <div class="buttons">
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-twitter"
-                                                    ></i>
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-facebook-square"
-                                                    ></i>
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-instagram"
-                                                    ></i>
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-just-icon"
-                                                >
-                                                    <i
-                                                        class="fa fa-google-plus"
-                                                    ></i>
-                                                </a>
+                                            <div
+                                                id="sliderRegular"
+                                                class="slider noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"
+                                            >
+                                                <div class="noUi-base">
+                                                    <div
+                                                        class="noUi-connects"
+                                                    ></div>
+                                                    <div
+                                                        class="noUi-origin"
+                                                        style="
+                                                            transform: translate(
+                                                                -794.444%,
+                                                                0px
+                                                            );
+                                                            z-index: 4;
+                                                        "
+                                                    >
+                                                        <div
+                                                            class="noUi-handle noUi-handle-lower"
+                                                            data-handle="0"
+                                                            tabindex="0"
+                                                            role="slider"
+                                                            aria-orientation="horizontal"
+                                                            aria-valuemin="0.0"
+                                                            aria-valuemax="100.0"
+                                                            aria-valuenow="20.6"
+                                                            aria-valuetext="20.56"
+                                                        >
+                                                            <div
+                                                                class="noUi-touch-area"
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-md-8 ml-auto mr-auto mt-5 text-center"
+                                        >
+                                            <a
+                                                href="/select-speaker/"
+                                                class="btn btn-outline-neutral btn-round btn-lg"
+                                            >
+                                                등장인물 이름 설정
+                                                <i
+                                                    class="nc-icon nc-minimal-right"
+                                                ></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -168,26 +219,57 @@
                                             <h5>너의 이름은 | 외국어</h5>
                                             <h5>남은 예상시간 00시 00분</h5>
                                             <br />
-                                            <div class="buttons">
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-neutral btn-link btn-lg"
-                                                >
-                                                    <i
-                                                        class="fa fa-share-alt"
-                                                    ></i>
-                                                    Share Offer
-                                                </a>
-                                                <a
-                                                    href="javascript:;"
-                                                    class="btn btn-success btn-round btn-lg"
-                                                >
-                                                    <i
-                                                        class="fa fa-shopping-cart"
-                                                    ></i>
-                                                    Shop Now
-                                                </a>
+                                            <div
+                                                id="sliderRegular"
+                                                class="slider noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"
+                                            >
+                                                <div class="noUi-base">
+                                                    <div
+                                                        class="noUi-connects"
+                                                    ></div>
+                                                    <div
+                                                        class="noUi-origin"
+                                                        style="
+                                                            transform: translate(
+                                                                -794.444%,
+                                                                0px
+                                                            );
+                                                            z-index: 4;
+                                                        "
+                                                    >
+                                                        <div
+                                                            class="noUi-handle noUi-handle-lower"
+                                                            data-handle="0"
+                                                            tabindex="0"
+                                                            role="slider"
+                                                            aria-orientation="horizontal"
+                                                            aria-valuemin="0.0"
+                                                            aria-valuemax="100.0"
+                                                            aria-valuenow="20.6"
+                                                            aria-valuetext="20.56"
+                                                        >
+                                                            <div
+                                                                class="noUi-touch-area"
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-md-7 ml-auto mt-5 text-right"
+                                        >
+                                            <a
+                                                href="/select-speaker/"
+                                                class="btn btn-outline-neutral btn-round btn-lg"
+                                            >
+                                                등장인물 이름 설정
+                                                <i
+                                                    class="nc-icon nc-minimal-right"
+                                                ></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -200,6 +282,7 @@
                     href="#carouselExampleIndicators"
                     role="button"
                     data-slide="prev"
+                    style="background-color: rgba(255, 255, 255, 0)"
                 >
                     <span class="fa fa-angle-left"></span>
                     <span class="sr-only">Previous</span>
@@ -209,6 +292,7 @@
                     href="#carouselExampleIndicators"
                     role="button"
                     data-slide="next"
+                    style="background-color: rgba(225, 225, 225, 0)"
                 >
                     <span class="fa fa-angle-right"></span>
                     <span class="sr-only">Next</span>

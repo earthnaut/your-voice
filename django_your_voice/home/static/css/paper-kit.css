@@ -9120,8 +9120,10 @@ textarea.form-control {
   border: 0 none;
 }
 
+/* loading 하단바 색 수정함 -> 왜 안바뀌지?*/
 .carousel-indicators .active {
-  background-color: #f5593d;
+  /* background-color: #f5593d; */
+  background-color: #6bd098;
 }
 
 .page-carousel:hover .carousel-control.right,

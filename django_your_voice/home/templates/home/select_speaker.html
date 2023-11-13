@@ -1,0 +1,180 @@
+{% extends './base_other.html' %} {% block main_other %}
+<div class="section section-header cd-section" id="headers" style="padding: 0">
+    <!-- select_speaker.html로 분리 -->
+    <div class="header-1">
+        <!-- 간단 네비게이션 -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+            <div class="container">
+                <a class="navbar-brand mb-0" href="/">너의 목소리가 보여</a>
+            </div>
+        </nav>
+        <div
+            class="page-header"
+            style="
+                background-image: url('../../../static/img/sections/your_name_2.jpg');
+            "
+        >
+            <div class="filter"></div>
+            <div class="content-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <h2 class="title">
+                                아래 대사를 말하는 사람은 누구인가요?
+                            </h2>
+                            <h5 class="description">
+                                장면과 대사를 보고 해당 인물의 이름을
+                                알려주세요.
+                            </h5>
+                            <br />
+                            <div class="row" style="padding: 20px">
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div
+                                            class="card-image"
+                                            style="position: relative"
+                                        >
+                                            <a href="javascript:;">
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_1.jpg"
+                                                />
+                                                <i
+                                                    class="nc-icon nc-button-play"
+                                                    style="
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(
+                                                            -50%,
+                                                            -50%
+                                                        );
+                                                        font-size: 60px;
+                                                        color: white;
+                                                    "
+                                                ></i>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                첫번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                다치지 말고 멀쩡히 돌아오도록
+                                                해. <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <!-- 재생 아이콘 추가하기 위해 position 속성 추가-->
+                                        <div
+                                            class="card-image"
+                                            style="position: relative"
+                                        >
+                                            <a href="javascript:;">
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_2.jpg"
+                                                />
+                                                <i
+                                                    class="nc-icon nc-button-play"
+                                                    style="
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(
+                                                            -50%,
+                                                            -50%
+                                                        );
+                                                        font-size: 60px;
+                                                        color: white;
+                                                    "
+                                                ></i>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                두번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                이 고로케는 뭐야?
+                                                <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div
+                                            class="card-image"
+                                            style="position: relative"
+                                        >
+                                            <a href="javascript:;">
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_3.jpg"
+                                                />
+                                                <i
+                                                    class="nc-icon nc-button-play"
+                                                    style="
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(
+                                                            -50%,
+                                                            -50%
+                                                        );
+                                                        font-size: 60px;
+                                                        color: white;
+                                                    "
+                                                ></i>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                세번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                이곳에 날 데려와줘서 고마워.<br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="description">화자 1의 이름</h3>
+                                <div
+                                    class="col-sm-4 ml-auto mr-auto"
+                                    style="padding-top: 20px"
+                                >
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            value=""
+                                            placeholder="이름"
+                                            class="form-control no-border"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mr-auto ml-auto mt-5">
+                                    <a
+                                        href="/result-download/"
+                                        class="btn btn-outline-neutral btn-round btn-lg"
+                                    >
+                                        다음
+                                        <i class="nc-icon nc-minimal-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

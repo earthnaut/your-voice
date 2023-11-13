@@ -13,7 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 이 경로는 settings.py로 있을 때 경로임
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 지금은 settings라는 폴더 안에 common.py로 존재하니까 경로를 하나 더 올라가야 함
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -104,12 +109,37 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+   BASE_DIR / 'home/static',
+]
+# 개발시 각 앱에서 사용되는 static 디렉토리
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# 배포시 각 앱의 static 파일들을 모아서 한 폴더에 넣은 디렉토리
+# collectstatic 명령으로 각 앱의 static 디렉토리를 staticfiles라는 디렉토리 한 곳에 뭉침
+# 그러나 우리는 걍 BASE_DIR/static에 직접 다 때려넣고 쓸 거임
+
+
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+# 미디어 파일이 저장될 디렉리 경로
+MEDIA_ROOT = BASE_DIR / "media"  # BASE_DIR은 프로젝트 루트 디렉토리를 가리킵니다.
+
+# 미디어 파일의 URL 경로
+MEDIA_URL = "/media/"

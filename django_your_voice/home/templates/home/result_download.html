@@ -1,0 +1,102 @@
+{% extends './base_other.html' %} {% block main_other %}
+<div class="section section-header cd-section" id="headers" style="padding: 0">
+    <!-- result_download.html - preview로 분리 -->
+    <div class="header-4">
+        <div class="header-wrapper">
+            <!-- 간단 네비게이션 -->
+            <nav
+                class="navbar navbar-expand-lg navbar-transparent navbar-absolute"
+            >
+                <div class="container">
+                    <a class="navbar-brand mb-0" href="/">너의 목소리가 보여</a>
+                </div>
+            </nav>
+            <div class="page-header header-video">
+                <div class="filter filter-danger"></div>
+                <!-- 비디오 크기 늘리기 위해 width, height, background-size, background-position 속성 추가 -->
+                <div
+                    class="video-image"
+                    style="
+                        background-image: url('../../../static/img/video-placeholder.png');
+                        width: auto;
+                        height: 100%;
+                        background-size: cover;
+                        background-position: center;
+                    "
+                ></div>
+                <!-- 비디오 크기 꽉차게 늘리기 위해 width, height, object-fit 속성 추가-->
+                <div>
+                    <video
+                        id="video-source"
+                        preload="auto"
+                        loop="loop"
+                        muted="muted"
+                        volume="0"
+                        style="width: 100%; height: 100%; object-fit: cover"
+                    >
+                        <source
+                            src="../../../static/video/sweethome.mp4"
+                            type="video/mp4"
+                        />
+                        지원하지 않는 영상입니다.
+                    </video>
+                </div>
+                <div class="content-center">
+                    <div class="container upper-container text-center">
+                        <div class="video-text">
+                            <h2 class="title">자막이 생성되었습니다</h2>
+                            <h5 class="description">
+                                영상을 재생해 확인하세요.
+                            </h5>
+                        </div>
+                        <br />
+
+                        <button
+                            type="button"
+                            data-video="video-source"
+                            data-toggle="video"
+                            class="btn btn-lg btn-neutral"
+                        >
+                            <!--static/js/paper-kit.js에서 video.paused부분 한글로 변경함-->
+                            <!--static/js/paper-kit.min.js에서 video.paused부분 한글로 변경함-->
+                            <!-- 근데 웹페이지는 안바뀌네!!! -->
+                            <i class="fa fa-play"></i> 재생
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 헤더 끝나고 피쳐 시작 -->
+        <div class="section section-feature cd-section" id="features">
+            <!-- result_download.html - download로 분리 -->
+            <div class="features-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto text-center">
+                            <h2 class="title">생성된 자막을 받으세요</h2>
+                            <h5 class="description">
+                                자막은 .ass 파일로 제공됩니다.
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="info">
+                            <div class="icon icon-info">
+                                <i class="nc-icon nc-check-2"></i>
+                            </div>
+                            <div>
+                                <a
+                                    href="#"
+                                    class="btn btn-round btn-info btn-lg"
+                                    download
+                                    >자막 받기</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+</div>

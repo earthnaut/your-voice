@@ -10,3 +10,4 @@ migrations/
 
 # 로컬 설정 파일
 django_your_voice/django_your_voice/settings/prod.py
+django_your_voice/django_your_voice/settings/local.py

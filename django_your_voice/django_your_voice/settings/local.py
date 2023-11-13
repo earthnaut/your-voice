@@ -1,10 +1,8 @@
 from .common import *
 
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-(+30(rz2$l+lfbm&)oe_7s+pitlr4!-6w!86+)&1y7)9a5f@6v"
-
 
 
 # Database

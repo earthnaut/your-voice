@@ -33,7 +33,7 @@
                             <div class="row m-5"></div>
                             <!-- 이때 range는 speaker_num 화자 수-->
                             {% for i in speaker_num %}
-                            <div class="row">
+                            <div class="row" id="speaker_1">
                                 <div class="col-md-4">
                                     <div class="card card-blog">
                                         <div class="card-image">
@@ -222,7 +222,40 @@
                     </div>
                 </div>
             </div>
+            <nav id="cd-vertical-nav" style="right: -10px">
+                <ul>
+                    {% for i in speaker_num %}
+                    <li>
+                        {% if i == speaker_num.0 %}
+                        <a
+                            href="#speaker_1"
+                            data-number="{{i}}"
+                            class="is-selected"
+                        >
+                            <span class="cd-dot"></span>
+                            <span class="cd-label">화자 {{i}}</span>
+                        </a>
+                        {% else %}
+                        <a href="#speaker_{{i}}" data-number="{{i}}" class="">
+                            <span class="cd-dot"></span>
+                            <span class="cd-label">화자 {{i}}</span>
+                        </a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
+
+<style>
+    #cd-vertical-nav a.is-selected .cd-dot {
+        background-color: #51cbce;
+    }
+
+    #cd-vertical-nav .cd-dot {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+</style>
 {% endblock %}

@@ -13,8 +13,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": 'your_voice',
         'USER': 'root',
-        'PASSWORD': '3119',
+        'PASSWORD': '9999',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '9999',
     }
 }

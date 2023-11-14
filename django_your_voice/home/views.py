@@ -13,10 +13,14 @@ def loading(request):
     return render(request, 'home/loading.html', {})
 
 def select_speaker(request):
-    return render(request, 'home/select_speaker.html', {})
+    speaker_num = [1, 2, 3]
+    return render(request, 'home/select_speaker.html', {'speaker_num': speaker_num})
 
 def result_download(request):
     return render(request, 'home/result_download.html', {})
+
+
+
 
 
 
@@ -45,10 +49,10 @@ def upload_video(request):
         if form.is_valid():
             video = form.save()
             # 편집 로직을 여기에 추가
-            edited_video_path = edit_video(video.original_video.path)
-            video.edited_video = default_storage.save(edited_video_path, File(edited_video_path))
+            # edited_video_path = edit_video(video.original_video.path)
+            # video.edited_video = default_storage.save(edited_video_path, File(edited_video_path))
             video.save()
-            return redirect('download_video', video_id=video.id)
+            return redirect('loading', video_id=video.id)
     else:
         form = VideoUploadForm()
     return render(request, 'upload_video.html', {'form': form})

@@ -15,10 +15,14 @@
             "
         >
             <div class="filter"></div>
-            <div class="content-center">
+            <div
+                class="content-center"
+                style="height: 100%; overflow-y: auto; overflow-x: hidden"
+            >
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
+                            <div class="row" style="height: 100px"></div>
                             <h2 class="title">
                                 아래 대사를 말하는 사람은 누구인가요?
                             </h2>
@@ -26,15 +30,38 @@
                                 장면과 대사를 보고 해당 인물의 이름을
                                 알려주세요.
                             </h5>
-                            <br />
-                            <div class="row" style="padding: 20px">
+                            <div class="row m-5"></div>
+                            <!-- 이때 range는 speaker_num 화자 수-->
+                            {% for i in speaker_num %}
+                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="card card-blog">
-                                        <div
-                                            class="card-image"
-                                            style="position: relative"
-                                        >
+                                        <div class="card-image">
                                             <a href="javascript:;">
+                                                <!--
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_2.jpg"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
+                                                    style="
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
+                                                    "
+                                                >
+                                                    <source
+                                                        src="../../../static/video/kokuriko.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
+                                                <!--
                                                 <img
                                                     class="img img-raised"
                                                     src="../../../static/img/sections/kokuriko_1.jpg"
@@ -52,7 +79,7 @@
                                                         font-size: 60px;
                                                         color: white;
                                                     "
-                                                ></i>
+                                                ></i>-->
                                             </a>
                                         </div>
                                         <div class="card-body">
@@ -74,24 +101,29 @@
                                             style="position: relative"
                                         >
                                             <a href="javascript:;">
+                                                <!--
                                                 <img
                                                     class="img img-raised"
                                                     src="../../../static/img/sections/kokuriko_2.jpg"
-                                                />
-                                                <i
-                                                    class="nc-icon nc-button-play"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
                                                     style="
-                                                        position: absolute;
-                                                        top: 50%;
-                                                        left: 50%;
-                                                        transform: translate(
-                                                            -50%,
-                                                            -50%
-                                                        );
-                                                        font-size: 60px;
-                                                        color: white;
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
                                                     "
-                                                ></i>
+                                                >
+                                                    <source
+                                                        src="../../../static/video/kokuriko.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
                                             </a>
                                         </div>
                                         <div class="card-body">
@@ -112,24 +144,29 @@
                                             style="position: relative"
                                         >
                                             <a href="javascript:;">
+                                                <!--
                                                 <img
                                                     class="img img-raised"
                                                     src="../../../static/img/sections/kokuriko_3.jpg"
-                                                />
-                                                <i
-                                                    class="nc-icon nc-button-play"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
                                                     style="
-                                                        position: absolute;
-                                                        top: 50%;
-                                                        left: 50%;
-                                                        transform: translate(
-                                                            -50%,
-                                                            -50%
-                                                        );
-                                                        font-size: 60px;
-                                                        color: white;
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
                                                     "
-                                                ></i>
+                                                >
+                                                    <source
+                                                        src="../../../static/video/kokuriko.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
                                             </a>
                                         </div>
                                         <div class="card-body">
@@ -144,7 +181,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h3 class="description">화자 1의 이름</h3>
+                                <h3 class="description">화자 {{ i }}의 이름</h3>
                                 <div
                                     class="col-sm-4 ml-auto mr-auto"
                                     style="padding-top: 20px"
@@ -159,8 +196,19 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if i != speaker_num|last %}
+                            <div class="row m-5"></div>
+                            <hr
+                                style="border-top: 1px solid #fff; opacity: 0.3"
+                            />
+                            <div class="row m-5"></div>
+                            {% endif %} {% endfor %}
+
                             <div class="row">
-                                <div class="mr-auto ml-auto mt-5">
+                                <div
+                                    class="mr-auto ml-auto mt-5"
+                                    style="margin-bottom: 100px"
+                                >
                                     <a
                                         href="/result-download/"
                                         class="btn btn-outline-neutral btn-round btn-lg"

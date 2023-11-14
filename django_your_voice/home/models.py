@@ -27,3 +27,7 @@ class Caption(models.Model):
     caption_speech = models.FileField(upload_to="results/caption_speech")
     caption_background = models.FileField(upload_to="results/caption_background")
     caption_combine = models.FileField(upload_to="results/caption_combine")
+
+
+# \media\sigment 경로는 대사를 마디별로 자른 시간대로 동영상을 만든 경로임
+# -> 이것도 DB 만들어야하나? views.py에서 처리하고 끝내면 안되나

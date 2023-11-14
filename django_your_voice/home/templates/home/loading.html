@@ -218,6 +218,8 @@
                                             </h2>
                                             <h5>너의 이름은 | 외국어</h5>
                                             <h5>남은 예상시간 00시 00분</h5>
+                                            <div id="progress"></div>
+                                            <div id="estimated-time"></div>
                                             <br />
                                             <div
                                                 id="sliderRegular"
@@ -301,4 +303,32 @@
         </div>
     </div>
 </div>
+
+<!-- Ajax 사용해 모델진행상태 요청 및 응답받아 화면에 표시하는 javascript 코드 -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 모델 실행 중인 동안 정기적으로 서버에 요청을 보냄
+        var intervalId = setInterval(function () {
+            $.ajax({
+                url: '/run-model/', // Django View의 URL
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // 서버로부터 받은 데이터를 사용하여 화면 업데이트
+                    var progress = data.{{progress}};
+                    var estimatedTime = data.{{estimated_time}};
+
+                    // 예시: 진행률 업데이트
+                    $('#progress').text('Progress: ' + progress + '%');
+                    // 예시: 예상 시간 업데이트
+                    $('#estimated-time').text(
+                        'Estimated Time: ' + estimatedTime
+                    );
+                },
+            });
+        }, 5000); // 5초마다 업데이트 (원하는 간격으로 조절)
+    });
+</script>
+
 {% endblock %}

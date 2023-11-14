@@ -94,19 +94,76 @@ Coded by www.creative-tim.com
 
     <style>
       @font-face {
-        font-family: "EscoreDream3";
-        src: url("C:\Users\User\Desktop\yourname\your-voice\django_your_voice\home\static\fonts\SCDream3.otf")
-          format("opentype");
-        font-weight: thin;
-        font-style: normal;
+        font-family: "SCDream2";
+        src: url("/static/fonts/SCDream2.woff") format("woff");
       }
-      .navbar-brand,
-      h1,
-      h3 {
-        font-family: "EscoreDream3", sans-serif;
+
+      @font-face {
+        font-family: "SCDream3";
+        src: url("/static/fonts/SCDream3.woff") format("woff");
       }
-      body {
-        font-family: "NotoSansKR", EscoreDream3;
+
+      @font-face {
+        font-family: "SCDream4";
+        src: url("/static/fonts/SCDream4.woff") format("woff");
+      }
+
+      @font-face {
+        font-family: "SCDream5";
+        src: url("/static/fonts/SCDream5.woff") format("woff");
+      }
+
+      @font-face {
+        font-family: "SCDream6";
+        src: url("/static/fonts/SCDream6.woff") format("woff");
+      }
+
+      @font-face {
+        font-family: "SCDream7";
+        src: url("/static/fonts/SCDream7.woff") format("woff");
+      }
+
+      @font-face {
+        font-family: "SCDream8";
+        src: url("/static/fonts/SCDream8.woff") format("woff");
+      }
+
+      @font-face {
+        font-family: "SCDream9";
+        src: url("/static/fonts/SCDream9.woff") format("woff");
+      }
+
+      /* 각 폰트에 대한 클래스 스타일 */
+      .SCdream2-font-style {
+        font-family: "SCDream2", sans-serif;
+      }
+
+      .SCdream3-font-style {
+        font-family: "SCDream3", sans-serif;
+      }
+
+      .SCdream4-font-style {
+        font-family: "SCDream4", sans-serif;
+      }
+
+      .SCdream5-font-style {
+        font-family: "SCDream5", sans-serif;
+      }
+
+      .SCdream6-font-style {
+        font-family: "SCDream6", sans-serif;
+      }
+
+      .SCdream7-font-style {
+        font-family: "SCDream7", sans-serif;
+      }
+
+      .SCdream8-font-style {
+        font-family: "SCDream8", sans-serif;
+      }
+
+      .SCdream9-font-style {
+        font-family: "SCDream9", sans-serif;
       }
     </style>
 
@@ -765,6 +822,7 @@ Coded by www.creative-tim.com
       }
     </style>
 
+    {% comment %}
     <script type="text/javascript" id="">
       function setCookie(a, d, c) {
         var b = new Date();
@@ -810,6 +868,7 @@ Coded by www.creative-tim.com
           .getElementById("close-bar")
           .addEventListener("click", closeOfferBar));
     </script>
+    {% endcomment %}
     <script type="text/javascript" id="">
       !(function (d, g, e) {
         d.TiktokAnalyticsObject = e;

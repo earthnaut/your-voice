@@ -218,8 +218,7 @@
                                             </h2>
                                             <h5>너의 이름은 | 외국어</h5>
                                             <h5>남은 예상시간 00시 00분</h5>
-                                            <div id="progress"></div>
-                                            <div id="estimated-time"></div>
+
                                             <br />
                                             <div
                                                 id="sliderRegular"
@@ -272,6 +271,18 @@
                                                     class="nc-icon nc-minimal-right"
                                                 ></i>
                                             </a>
+                                            <div class="row">
+                                                <h6>
+                                                    이곳에 예상시간 업데이트 될
+                                                    예정임
+                                                </h6>
+                                                <div
+                                                    id="progress_percent"
+                                                ></div>
+                                                <div id="estimated-time">
+                                                    남은 예상시간을 계산중입니다
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -309,25 +320,31 @@
 <script>
     $(document).ready(function () {
         // 모델 실행 중인 동안 정기적으로 서버에 요청을 보냄
+        console.log('B');
+        /*
         var intervalId = setInterval(function () {
             $.ajax({
-                url: '/run-model/', // Django View의 URL
-                type: 'GET',
+                url: '/check_progress/', // Django View의 URL - 진행상황이 적힌 txt 파일 내용을 확인함
+                type: 'POST',
                 dataType: 'json',
                 success: function (data) {
+                    console.log(data);
                     // 서버로부터 받은 데이터를 사용하여 화면 업데이트
-                    var progress = data.{{progress}};
-                    var estimatedTime = data.{{estimated_time}};
+                    var progressPercent = data.progress_percent;
+                    var estimatedTime = data.estimated_time;
 
-                    // 예시: 진행률 업데이트
-                    $('#progress').text('Progress: ' + progress + '%');
-                    // 예시: 예상 시간 업데이트
+                    // 진행률 업데이트
+                    $('#progress_percent').text(
+                        'Progress Percentage: ' + progressPercent + '%'
+                    );
+                    // 예상 시간 업데이트
                     $('#estimated-time').text(
                         'Estimated Time: ' + estimatedTime
                     );
                 },
             });
         }, 5000); // 5초마다 업데이트 (원하는 간격으로 조절)
+        */
     });
 </script>
 

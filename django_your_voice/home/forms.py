@@ -5,4 +5,4 @@ from .models import Video
 class VideoUploadForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ['video_ori']
+        fields = ['title', 'video_ori']

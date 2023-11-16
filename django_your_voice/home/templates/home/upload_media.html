@@ -190,7 +190,6 @@
                         </div>
                         <div class="col-md-5">
                             <div>
-                                <!-- 유튜브로 영상 첨부 -->
                                 <form
                                     method="post"
                                     action="{% url 'download_youtube_link' %}"
@@ -206,10 +205,22 @@
                                             class="form-control mx-1"
                                             placeholder="Youtube 링크를 입력해 주세요."
                                             aria-label="input-youtube-link"
+                                            {%
+                                            if
+                                            is_attachment_processed
+                                            %}disabled{%
+                                            endif
+                                            %}
                                         />
                                         <button
                                             class="btn btn-outline-neutral btn-round mx-1 dream-font-style"
                                             type="submit"
+                                            {%
+                                            if
+                                            is_attachment_processed
+                                            %}disabled{%
+                                            endif
+                                            %}
                                         >
                                             제출
                                         </button>
@@ -243,18 +254,47 @@
                                 </style>
 
                                 <script>
+                                    {% comment %}
+                                    [버튼 클릭]
+                                      1. ajax 요청
+                                      2. loader에 style에 display block 속성 추가
+                                      3. button에 disable 속성 추가
+                                     {% endcomment %}
                                     // 제출 버튼 클릭 이벤트 감지
                                     document
-                                        .getElementById('youtubeForm')
-                                        .addEventListener(
-                                            'submit',
-                                            function () {
-                                                document.getElementById(
-                                                    'loader'
-                                                ).style.display = 'block'; // 스피너 표시
-                                                // 여기에 스피너 활성화를 위한 JavaScript 코드
-                                            }
-                                        );
+                                      .getElementById("youtubeForm")
+                                      .addEventListener("submit", function () {
+                                        document.getElementById("loader").style.display =
+                                          "block"; // 스피너 표시
+                                        document.getElementById("fileinput").setAttribute("disabled", "");
+                                        document.getElementById("fileinput-box").setAttribute("disabled", "");
+                                        // 여기에 스피너 활성화를 위한 JavaScript 코드
+                                      });
+
+                                    document.querySelector('.fileinput-new').addEventListener('click', function() {
+                                      var submitButton = document.querySelector('#youtubeForm button[type="submit"]');
+                                      if (submitButton) {
+                                        submitButton.disabled = true;
+                                      }
+                                    });
+
+                                    document.getElementById('fileinput').addEventListener('change', function() {
+                                        // 파일이 첨부되었을 때 실행할 함수
+                                        disableInputAndButton();
+                                    });
+
+                                    function disableInputAndButton() {
+                                      // 입력 필드와 제출 버튼을 찾아서 비활성화
+                                      var inputField = document.querySelector('.input-group .form-control');
+                                      var submitButton = document.querySelector('.input-group button');
+
+                                      inputField.disabled = true;
+                                      submitButton.disabled = true;
+
+                                      // CSS 클래스를 추가하여 스타일 변경
+                                      inputField.classList.add('disabled-style');
+                                      submitButton.classList.add('disabled-style');
+                                    }
                                 </script>
 
                                 <!-- 첨부파일로 영상 첨부 -->
@@ -272,6 +312,20 @@
                                         />
                                         -->
                                     </div>
+                                    <style>
+                                        #fileinput:disabled,
+                                        #fileinput-box[disabled] {
+                                            background-color: gray;
+                                            border-color: gray;
+                                        }
+                                        #fileinput-box[disabled] {
+                                            opacity: 1;
+                                        }
+                                        #disabled-style {
+                                            background-color: darkgray;
+                                            border-color: darkgray;
+                                        }
+                                    </style>
                                     <form
                                         method="post"
                                         action="{% url 'download_attachment' %}"
@@ -279,7 +333,13 @@
                                         <div>
                                             <span
                                                 class="btn btn-info btn-file dream-font-style"
-                                                type="submit"
+                                                {%
+                                                if
+                                                is_youtube_processed
+                                                %}disabled{%
+                                                endif
+                                                %}
+                                                id="fileinput-box"
                                                 ><span class="fileinput-new"
                                                     >영상 직접 첨부하기</span
                                                 ><span class="fileinput-exists"
@@ -287,13 +347,22 @@
                                                 ><input
                                                     type="hidden"
                                                     value=""
-                                                    name="..." />
+                                                    name="..."
+                                                />
                                                 <!-- 동영상 파일 허용 accept="video/*" 속성 추가 -->
                                                 <input
                                                     type="file"
                                                     name="attachment_input"
                                                     accept="video/*"
-                                            /></span>
+                                                    id="fileinput"
+                                                    {%
+                                                    if
+                                                    is_youtube_processed
+                                                    %}disabled{%
+                                                    endif
+                                                    %}
+                                                />
+                                            </span>
                                             <a
                                                 href="javascript:;"
                                                 class="btn btn-link btn-danger fileinput-exists btn-round"
@@ -311,6 +380,7 @@
                                 </h5>
                             </div>
                         </div>
+
                         <div class="col-md-6 ml-auto">
                             <h2 class="title dream-font-style">
                                 영상 파일을 선택하세요

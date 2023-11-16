@@ -198,18 +198,35 @@
                                     {% csrf_token %}
                                     <div
                                         class="input-group mb-3 dream-font-style"
-                                    >
+                                    >   
+                                    <!-- 유튜브 input disable 스타일 -->
+                                    <style>
+                                        #youtubeinput:disabled,
+                                        #youtubeinput-box[disabled] {
+                                            background-color: gray;
+                                            border-color: gray;
+                                        }
+                                        #youtubeinput-box[disabled] {
+                                            opacity: 1;
+                                        }
+                                        #disabled-style {
+                                            background-color: darkgray;
+                                            border-color: darkgray;
+                                        }
+                                    </style>
                                         <input
                                             type="text"
                                             name="youtube_link"
                                             class="form-control mx-1"
                                             placeholder="Youtube 링크를 입력해 주세요."
                                             aria-label="input-youtube-link"
+                                            id="youtubeinput"
                                             {% if is_attachment_processed %}disabled{% endif %}
                                         />
                                         <button
                                             class="btn btn-outline-neutral btn-round mx-1 dream-font-style"
                                             type="submit"
+                                            id="youtubeinput-box"
                                             {% if is_attachment_processed %}disabled{% endif %}
                                         >
                                             제출
@@ -302,6 +319,7 @@
                                         />
                                         -->
                                     </div>
+                                    <!-- 첨부파일 input disable 스타일 -->
                                     <style>
                                         #fileinput:disabled,
                                         #fileinput-box[disabled] {
@@ -316,15 +334,20 @@
                                             border-color: darkgray;
                                         }
                                     </style>
+                                    {% comment %} 
+                                    첨부파일 버튼 코드 보류 : 테두리 눌러야 youtube 인풋 비활성화 됨
+                                    해결법: 제출하는 버튼을 하나 더 만들어야 함
                                     <form
-                                        method="post"
-                                        action="{% url 'download_attachment' %}"
-                                    >
+                                    method="post"
+                                    action="{% url 'download_attachment' %}"
+                                    id="attachmentForm">
+                                    {% csrf_token %}
                                         <div>
-                                            <span
+                                            <button
                                                 class="btn btn-info btn-file dream-font-style"
                                                 {% if is_youtube_processed %} disabled {% endif %}
                                                 id="fileinput-box"
+                                                
                                                 ><span class="fileinput-new"
                                                     >영상 직접 첨부하기</span
                                                 ><span class="fileinput-exists"
@@ -340,10 +363,10 @@
                                                     name="attachment_input"
                                                     accept="video/*"
                                                     id="fileinput"
-
+                                                    type="submit"
                                                     {% if is_youtube_processed %} disabled {% endif %}
                                                 />
-                                            </span>
+                                            </button>
                                             <a
                                                 href="javascript:;"
                                                 class="btn btn-link btn-danger fileinput-exists btn-round"
@@ -352,7 +375,34 @@
                                                 지우기</a
                                             >
                                         </div>
-                                    </form>
+                                    </form> {% endcomment %}
+                                    
+                                    <script>
+                                        // 0. attachment submit을 감지하기
+                                        document.getElementById("attachmentForm").addEventListener("submit", function(event) {
+                                            // 폼이 제출되었을 때 실행할 코드 --> 1. 2.
+                                            changeFileInput();
+                                        });
+
+                                        // 1. youtube input란 비활성화 하기
+                                        function changeFileInput() {
+                                            // input 요소
+                                            var simpleInput = document.getElementById("youtubeinput");
+                                      
+                                            // 새로운 input 요소 만들기
+                                            var newInput = document.createElement("input");
+                                            newInput.type = "text";
+                                            newInput.value = "";
+                                            newInput.placeholder = "파일이 첨부된 상태입니다.";
+                                            newInput.className = "form-control";
+                                            newInput.disabled = true;
+                                        
+                                            // 기존 input란을 새 input란으로 바꾸기
+                                            simpleInput.parentNode.replaceChild(newInput, simpleInput);
+
+                                        // 2. youtube 버튼 비활성화 하기
+                                        }
+                                    </script>
                                 </div>
                             </div>
                             <div>
@@ -371,8 +421,9 @@
                             </h5>
                             <br />
                             <!-- a태그에 target="_blank" 속성 넣으면 새탭으로 넘어감-->
+                            <!--href는 views.py에서 /select-language/?{쿼리파라미터}로 정의했음-->
                             <a
-                                href="/select-language/"
+                                href={{next_url}}
                                 class="btn btn-outline-neutral btn-round btn-lg dream-font-style"
                             >
                                 다음

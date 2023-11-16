@@ -19,7 +19,7 @@
   <div class="content-center">
     <div class="motto">
       <h1 class="title-uppercase text-center SCdream5-font-style">너의 목소리가 보여</h1>
-      <h3 class="text-center SCdream3-font-style">AI를 이용해 자동으로 자막을 생성해보세요.</h3>
+      <h3 class="text-center SCdream3-font-style">AI를 이용해 자동으로 자막을 생성해 보세요.</h3>
       <br />
       <a href="/upload-media/" class="btn btn-warning btn-round btn-lg SCdream4-font-style">
         자막 생성하기
@@ -32,20 +32,76 @@
     <div class="section section-white">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 ml-auto mr-auto text-center title">
-            <h2>Why our product is the best</h2>
+          <div class="col-md-12 ml-auto mr-auto text-center title SCdream3-font-style">
+            <h2>비장애인 청각장애인 모두 원하는 컨텐츠를 필요할 때 언제든<br/> 
+              즐길 수 있게 도와주는 배리어프리 자막 서비스</h2><br/>
+              {% comment %} <br/>Why our product is the best<br/> {% endcomment %}
             <h3 class="title-uppercase">
               <small
-                >배리어프리‘Barrier Free’ = ‘장벽(barrier)’ +
-                벗어나다‘프리(free)’</small
+                >배리어프리 ‘Barrier Free’ = 장애를 뜻하는 ‘배리어(barrier)’ +
+                벗어나다를 뜻하는 ‘프리(free)’<br/>장애인에게 불편한 물리적·심리적·제도적 장벽을 허물어 장애인과 비장애인이 함께 살기 좋은 사회를 만들자는 운동을 의미합니다.</small
               >
             </h3>
           </div>
         </div>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <div class="info">
+              <div class="icon icon-danger">
+                <img src="/static/img/people.png" alt="Sound Event" style="width: 78px; height: auto;" />
+              </div>
+              <div class="description">
+                <h4 class="info-title">등장인물 분리 / 자막 태깅 <br/> Speaker Diarization</h4>
+                <p class="description">Who spoke when?<br/>AI 화자 분할 모델을 통해 오디오 신호에서 누가 언제 말했는지에 대한 정보를 분석하여 화자를 분할합니다. 대사 앞에 등장인물 정보를 태깅하여 누가 말하고 있는지 상황 정보를 전달합니다.</p>
+                {% comment %} <a href="#pkp" class="btn btn-link btn-danger">See more</a> {% endcomment %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info">
+              <div class="icon icon-danger">
+                <img src="/static/img/sound.png" alt="soundicon" style="width: 65px; height: 80px;" />
+              </div>
+              <div class="description">
+                <h4 class="info-title">배경음 키워드 설명<br/> Sound Event Detection</h4>
+                <p> AI, Sound Even Detection(SED)기술을 통해 배경음악 및 소리에 대한 추가 정보를 키워드를 통해 자막과 함께 제공해 드립니다.</p>
+                {% comment %} <a href="#pkp" class="btn btn-link btn-danger">See more</a> {% endcomment %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info">
+              <div class="icon icon-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" height="64" width="64" viewBox="0 0 64 64"><title>translation</title><g stroke-linecap="square" stroke-width="2" fill="none" stroke="#212121" stroke-linejoin="miter" class="nc-icon-wrapper" stroke-miterlimit="10"><path d="M34,19V7a4,4,0,0,0-4-4H6A4,4,0,0,0,2,7V29a4,4,0,0,0,4,4H8v5.333L16,33h8" stroke="#212121"/><path d="M30,51V29a4,4,0,0,1,4-4H58a4,4,0,0,1,4,4V51a4,4,0,0,1-4,4H56v5.333L48,55H34A4,4,0,0,1,30,51Z"/><polyline points="41 46 45 32 47 32 51 46"/><line data-cap="butt" x1="42.143" y1="42" x2="49.857" y2="42" stroke-linecap="butt"/><line x1="10" y1="13" x2="26" y2="13" stroke="#212121"/><line x1="18" y1="10" x2="18" y2="13" stroke="#212121"/><path d="M13.5,13c0,4,4.5,10,11.5,12" stroke="#212121"/><path d="M22.5,13c0,4-4.5,10-11.5,12" stroke="#212121"/></g></svg>
+              </div>
+              <div class="description">
+                <h4 class="info-title">자동 번역 / 자막 생성<br/>translation subtitle generation</h4>
+                <p>AI를 통해 영상에서 언어를 자동 감지하여 한국어로 번역된 자막을 바로 생성해 드립니다.  </p>
+                {% comment %} <a href="#pkp" class="btn btn-link btn-danger">See more</a> {% endcomment %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info">
+              <div class="icon icon-danger">      
+                <img src="/static/img/click.png" alt="click" style="width: 65px; height: 65px;" />
+              </div>
+              <div class="description">
+                <h4 class="info-title">프로그램 다운 없이<br/>쉽고 편한 생성<br/>Effortless User-friendly</h4>
+                <p>컨텐츠 제작자 또는 누군가 자막을 생성한 영상을 올려주길 기다리지 마세요. 언제든 원하는 유튜브 영상 또는 동영상 파일의 자막을 생성하고 바로 시청하세요.</p>
+                {% comment %} <a href="#pkp" class="btn btn-link btn-danger">See more</a> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+  
+
+        
         <div class="row">
           <div class="col-md-10 ml-auto mr-auto">
             <div class="text-center">
-              <span class="badge badge-warning main-tag">Trending</span>
+              {% comment %} <span class="badge badge-warning main-tag">Trending</span> {% endcomment %}
               <a href="javascrip: void(0);">
                 <h3 class="title">Is this what you are looking for?</h3>
               </a>
@@ -54,91 +110,107 @@
           </div>
           <div class="col-md-8 ml-auto mr-auto">
             <div class="iframe-container">
-              <iframe
-                src="https://www.youtube.com/embed/zKXbONQLzUQ?si=kGBu4507QWCk1Vb2"
-                frameborder="0"
-                allowfullscreen=""
-                height="450"
-              ></iframe>
+              <iframe width="560" height="470" src="https://www.youtube.com/embed/Uhj6B36c6V0?si=4x75vKN36_dJ0yAl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <p class="image-thumb text-center">Made by SKKU</p>
             <div class="article-content">
-              <h4>Follow unconventional beliefs</h4>
+              <h4>WHY?</h4>
+              <br/>
               <p>
-                You won’t find many concepts that are very useful or important
-                if you insist on having a worldview that’s void of controversy,
-                invulnerable to criticism, and incapable of making others feel
-                confused.
-              </p>
-              <p>
-                Interesting ideas are a reward for not being afraid to have
-                unconventional beliefs. You can’t grow if you’re never willing
-                to turn your back on the status quo. You can’t expand if you’re
-                never willing to take an unorthodox stand. You can’t have a
-                beautiful mind if you’re never willing to leave the crowd
-                behind.
+                현재 국내 배리어 프리 영화 제작 비율은 10% 미만<br/>
+                "한국 영화에 자막이 없어서 외국 영화를 더 많이 봐요."
+
               </p>
               <blockquote class="blockquote">
                 <p>
-                  "Don’t settle: Don’t finish crappy books. If you don’t like
-                  the menu, leave the restaurant. If you’re not on the right
-                  path, get off it."
+                  <img class="img" src='/static/img/contents_graph.png'>
                 </p>
                 <footer>
-                  - Chris Brogan in
-                  <cite title="Source Title">Trust Agents</cite>
+                  - 22' 콘텐츠 서비스 항목별 이용률 -
+                  <cite title="Source Title"><br/><디지털정보격차 실태조사> 과학기술정보통신부, NIA</cite>
                 </footer>
               </blockquote>
               <p>
-                It’s easier to fear rejection than it is to open our minds to
-                something new, but doing what’s easy doesn’t always equal doing
-                what’s authentic, enriching, and meaningful.
+                누구나 배리어프리를 고려하고 실천하는 포용적 사회, 장애인이 다양한 라이프 스타일을 누리는 사회 
               </p>
-              <div class="row">
-                <div class="col-md-6">
-                  <a href="javascrip: void(0);">
-                    <div
-                      class="card"
-                      data-radius="none"
-                      style="
-                        background-image: url('../../../static/img/sections/sebastien-gabrieles.jpg');
-                      "
-                    ></div>
-                  </a>
+
+              <style>
+                /* .card 클래스에 마우스를 올렸을 때 scale 변환을 추가 */
+                .card:hover {
+                  transform: scale(1.21); /* 마우스를 올렸을 때 크기를 116%로 증가 */
+                  transition: transform 0.3s ease-in-out; /* 변환에 대한 부드러운 전환 효과 */}
+
+                #card-elemental {
+                  min-height: 0px;}
+              </style>
+
+              <h4>화자의 입이 화면에 나오지 않거나 소리를 들을 수 없는 상황에서 유용해요</h4>
+              <div class="row">                
+                <div class="col-md-4" >
+                  <div class="card card-plain" id = "card-elemental">
+                    <div class="card-img-top ">
+                      <a href='/static/img/elimental.png'>
+                        <img class="img" src='/static/img/elimental.png'>
+                      </a>
+                    </div>
+                    
+                    <div class="card-body">
+                      <a href="http://www.creative-tim.com/product/paper-kit" target="_blank">
+                        {% comment %} <h4 class="card-title"></h4> {% endcomment %}
+                      </a>
+                      <h6 class="card-category text-muted">화면에 나오는 이(아버지)와 말하는 이(앰버)가 서로 다를 때</h6>
+                      {% comment %} <p class="card-description">
+                        Paper Kit is a free Bootstrap UI kit that can get you going in a new creative direction! To say the least, it's different since it's not material, flat or iOS inspired.
+                      </p> {% endcomment %}
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <a href="javascrip: void(0);">
-                    <div
-                      class="card"
-                      data-radius="none"
-                      style="
-                        background-image: url('../../../static/img/sections/john-towner.jpg');
-                      "
-                    ></div>
-                  </a>
+                <div class="col-md-4">
+                  <div class="card card-plain" id = "card-elemental">
+                    <div class="card-img-top">
+                      <a href="/static/img/elimental2.png">
+                        <img class="img" src='/static/img/elimental2.png'>
+                      </a>
+                    </div>
+                    <div class="card-body">          
+                    
+                      <h6 class="card-category text-muted">화면에 여러 명이 나와서 해당 자막이 누구의 대사인지 파악하기 어려울 때</h6>
+                      {% comment %} <p class="card-description">
+                        Light Bootstrap Dashboard PRO is a Bootstrap Admin Theme designed to look simple and beautiful. Forget about boring dashboards and grab yourself a copy to kickstart new project!
+                      </p> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card card-plain" id = "card-elemental">
+                    <div class="card-img-top">
+                      <a href="/static/video/elimental_video.mp4">
+                        <video autoplay controls loop muted source src="/static/video/elimental_video.mp4" poster="/static/img/elimental3.png" preload="auto" type="video/mp4">
+                      </a>
+                    </div>
+                    <div class="card-body">
+                      <a href="https://www.creative-tim.com/product/get-shit-done-pro" target="_blank">
+                        {% comment %} <h4 class="card-title">Get Shit Done Kit Pro</h4> {% endcomment %}
+                      </a>
+
+                      <h6 class="card-category text-muted"><br/><br/><br/><br/><br/><br/>한 장면에 두 대사가 동시에 나와 누가 어떤 대사를 말했는지 파악하기 어려울 때</h6>
+                      {% comment %} <p class="card-description">
+                        Get Shit Done Kit Pro it's a Bootstrap Kit that comes with a huge number of customisable components. They are pixel perfect, light and easy to use and combine with other elements.
+                      </p> {% endcomment %}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p></p>
-              <h4>Ideas Worth Mentioning</h4>
+            </div>
+          </div>
+        </div> 
+              {% comment %} <h4>화자의 입이 화면에 나오지 않는 상황에서 유용</h4>
               <p>
-                The stories, ideas and lessons are enough to fill a year’s worth
-                of articles, but for now I wanted to share the ideas straight
-                from the people creating the disruption. Below are my most
-                impactful takeaways from the last few days:
-              </p>
-              <p>
-                <strong>No one belongs here more than me.</strong>
-                When in doubt of your surroundings, this is the mantra.
-              </p>
-              <p>
-                <strong>The ultimate currency is being uncool.</strong>
-                Be vulnerably you and watch how you connect.
-              </p>
-              <p>
-                <strong>The opposite of scarcity is enough.</strong>
-                Be confident that if you’re doing work that matters to you, you
-                are enough. There is no comparison.
-              </p>
+                화면에 나오는 이와 말하는 이가 서로 다를 때<br/>
+                화면에 여러 명이 나와서 해당 자막이 누구의 대사인지 모를 때<br/>
+                한 장면에 두 대사가 동시에 나와 누가 어떤 대사를 말했는지 파악하기 어려울 때
+              </p>              
+              <h4>소리가 들리지 않는 상황에서 유용</h4>
               <p>
                 <strong>Unused creativity is not benign</strong>
                 – it turns into grief. Do something with it.
@@ -154,173 +226,165 @@
               <p>
                 <strong>You can’t control if someone loves you back.</strong>
                 Love them anyway.
-              </p>
-              <h4><strong>Conclusions</strong></h4>
+              </p> {% endcomment %}
+              {% comment %} <h4><strong>Conclusions</strong></h4>
               <p>
                 If all of your convictions can be expressed in a sound bite on
                 mainstream television without provoking the slightest bit of
                 anger or annoyance in anyone whatsoever, I think it’s safe to
                 say that your outlook on life offers you very few opportunities
                 for the remarkable.
-              </p>
+              </p> {% endcomment %}
+            {% comment %} </div>
+          </div> {% endcomment %}
+        {% comment %} </div>
+      </div> {% endcomment %}
+    {% comment %} </div>
+  {% comment %} </div> {% endcomment %}
+ 
+      <div class="projects-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title">Some of Our Awesome Products</h2>
+              <h5 class="description">
+                가장 활발하게 이용되고 있는 인기 유형별 영상 카테고리입니다.
+              </h5>
             </div>
-            <br />
+            <div class="project-pills">
+              <ul class="nav nav-pills nav-pills-info">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    data-toggle="pill"
+                    href="#pill-1"
+                    role="tab"
+                    >All categories</a
+                  >
+                </li>
+                <li class="nav-item" style="color:#51cbce;">
+                  <a class="nav-link" data-toggle="pill" href="#pill-2" role="tab"
+                    >Movie • Animation</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#pill-3" role="tab"
+                    >IT Tech</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#pill-4" role="tab"
+                    >Comedy</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#pill-5" role="tab"
+                    >Education</a
+                  >
+                </li>
+              </ul>
+              <!-- Pill panes -->
+              <div class="tab-content">
+                <div class="tab-pane active" id="pill-1" role="tabpanel"></div>
+                <div class="tab-pane" id="pill-2" role="tabpanel"></div>
+                <div class="tab-pane" id="pill-3" role="tabpanel"></div>
+                <div class="tab-pane" id="pill-4" role="tabpanel"></div>
+                <div class="tab-pane" id="pill-5" role="tabpanel"></div>
+                <div class="tab-pane" id="pill-6" role="tabpanel"></div>
+              </div>
+            </div>
+          </div>
+          <div class="space-top"></div>
+          <div class="row">
+            <div class="col-md-5">
+              <div
+                class="card"
+                data-background="image"
+                style="background-image: url('/static/img/yumis.png')"
+              >
+                <div class="card-body">
+                  <h6 class="card-category">Movie • Animation</h6>
+                  <a href="javascript:;">
+                    <h3 class="card-title">애니메이션 영화</h3>
+                  </a>
+                  <p class="card-description">
+                    <br></br><br></br>
+                  </p>
+                  <br />
+                  <a href="javascript:;" class="btn btn-success btn-round">
+                    <i class="fa fa-book" aria-hidden="true"></i> 더 보기
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div
+                class="card"
+                data-background="image"
+                style="
+                  background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLcAv2%2Fbtsz9zOW6aM%2Fpo4shXkBQNdm8p40rReRw0%2Fimg.png');
+                "
+              >
+                <div class="card-body">
+                  <h6 class="card-category">최신 IT 영상</h6>
+                  <h3 class="card-title">달아오르는 AI개발 경쟁</h3>
+                  <p class="card-description">
+                    <br></br><br></br>
+                  </p>
+                  <br />
+                  <a href="javascript:;" class="btn btn-primary btn-round">
+                    <i class="fa fa-book" aria-hidden="true"></i> 더 보기
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7">
+              <div
+                class="card"
+                data-background="image"
+                style="
+                  background-image: url('/static/img/azure.png');
+                "
+              >
+                <div class="card-body">
+                  <h6 class="card-category">Education</h6>
+                  <a href="javascript:;">
+                    <h3 class="card-title">해외 시사 토크</h3>
+                  </a>
+                  <p class="card-description">
+                    <br></br><br></br>
+                  </p>
+                  <br />
+                  <a href="javascript:;" class="btn btn-info btn-round">
+                    <i class="fa fa-book" aria-hidden="true"></i> 더 보기
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div
+                class="card"
+                data-background="image"
+                style="
+                  background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbi9JGI%2FbtsAba8D6fh%2FCyy0LteAVC0Ak0lg4ndyQ1%2Fimg.png');
+                "
+              >
+                <div class="card-body">
+                  <h6 class="card-category">comedy</h6>
+                  <h3 class="card-title">토크 예능 컨텐츠</h3>
+                  <p class="card-description">
+                    <br></br><br></br>
+                  </p>
+                  <br />
+                  <a href="javascript:;" class="btn btn-warning btn-round">
+                    <i class="fa fa-book" aria-hidden="true"></i> 더 보기
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="projects-1">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h2 class="title">Some of Our Awesome Products</h2>
-        <h5 class="description">
-          가장 활발하게 이용되고 있는 인기 유형별 영상 카테고리입니다.
-        </h5>
-      </div>
-      <div class="project-pills">
-        <ul class="nav nav-pills nav-pills-danger">
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              data-toggle="pill"
-              href="#pill-1"
-              role="tab"
-              >All categories</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#pill-2" role="tab"
-              >Comedy</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#pill-3" role="tab"
-              >IT테크</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#pill-4" role="tab"
-              >Education</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#pill-5" role="tab"
-              >Documentary</a
-            >
-          </li>
-        </ul>
-        <!-- Pill panes -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="pill-1" role="tabpanel"></div>
-          <div class="tab-pane" id="pill-2" role="tabpanel"></div>
-          <div class="tab-pane" id="pill-3" role="tabpanel"></div>
-          <div class="tab-pane" id="pill-4" role="tabpanel"></div>
-          <div class="tab-pane" id="pill-5" role="tabpanel"></div>
-          <div class="tab-pane" id="pill-6" role="tabpanel"></div>
-        </div>
-      </div>
-    </div>
-    <div class="space-top"></div>
-    <div class="row">
-      <div class="col-md-5">
-        <div
-          class="card"
-          data-background="image"
-          style="background-image: url('./assets/img/sections/pavel-kosov.jpg')"
-        >
-          <div class="card-body">
-            <h6 class="card-category">Productivy Apps</h6>
-            <a href="javascript:;">
-              <h3 class="card-title">The Best Productivity Apps</h3>
-            </a>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human
-              foundation in truth And I love you like Kanye loves Kanye I love
-              Rick Owens’ bed design but the back is...
-            </p>
-            <br />
-            <a href="javascript:;" class="btn btn-danger btn-round">
-              <i class="fa fa-book" aria-hidden="true"></i> 더 보기
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-7">
-        <div
-          class="card"
-          data-background="image"
-          style="
-            background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLcAv2%2Fbtsz9zOW6aM%2Fpo4shXkBQNdm8p40rReRw0%2Fimg.png');
-          "
-        >
-          <div class="card-body">
-            <h6 class="card-category">최신 IT 영상</h6>
-            <h3 class="card-title">달아오르는 AI개발 경쟁</h3>
-            <p class="card-description">
-              <br></br><br></br>　　　　　　　　　　　　　　　　　　　　　　　　　
-              　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-              　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-              　　　　　　　　　　　　　　　　　　　　
-            </p>
-            <br />
-            <a href="javascript:;" class="btn btn-primary btn-round">
-              <i class="fa fa-book" aria-hidden="true"></i> 더 보기
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
-        <div
-          class="card"
-          data-background="image"
-          style="
-            background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbi9JGI%2FbtsAba8D6fh%2FCyy0LteAVC0Ak0lg4ndyQ1%2Fimg.png');
-          "
-        >
-          <div class="card-body">
-            <h6 class="card-category">Comedy</h6>
-            <a href="javascript:;">
-              <h3 class="card-title">토크 예능 프로그램</h3>
-            </a>
-            <p class="card-description">
-              <br></br><br></br>
-            </p>
-            <br />
-            <a href="javascript:;" class="btn btn-info btn-round">
-              <i class="fa fa-book" aria-hidden="true"></i> 더 보기
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div
-          class="card"
-          data-background="image"
-          style="
-            background-image: url('./assets/img/sections/ilya-yakover.jpg');
-          "
-        >
-          <div class="card-body">
-            <h6 class="card-category">Materials</h6>
-            <h3 class="card-title">How to find the ‘right’ contacts.</h3>
-            <p class="card-description">
-              Boom, the invitations start flying and Brella makes it easy to
-              accept/decline, schedule a time and reserve a meeting space in
-              Disrupt’s white-glove CrunchMatch meeting...
-            </p>
-            <br />
-            <a href="javascript:;" class="btn btn-warning btn-round">
-              <i class="fa fa-book" aria-hidden="true"></i> 더 보기
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
+      {% endblock %}

@@ -92,9 +92,11 @@ from django.http import FileResponse
 from .models import Video
 from .forms import VideoUploadForm
 from django.core.files.storage import default_storage
+from django.http import JsonResponse
 
 def upload_video(request):
     if request.method == 'POST':
+        
         form = VideoUploadForm(request.POST, request.FILES)
         if form.is_valid():
             video = form.save()
@@ -102,7 +104,7 @@ def upload_video(request):
             # edited_video_path = edit_video(video.original_video.path)
             # video.edited_video = default_storage.save(edited_video_path, File(edited_video_path))
             video.save()
-            return redirect('loading', video_id=video.id)
+            return JsonResponse({'success': True, 'video_id': video.id})
     else:
         form = VideoUploadForm()
     return render(request, 'home/upload_video.html', {'form': form})
@@ -120,9 +122,8 @@ import os.path
 import re
 
 def download_youtube_link(request):
-    context = {}
-
     if request.method == 'POST':
+        context = {'is_youtube_processed': True}
         
         youtube_link = request.POST.get('youtube_link')
         youtube_id_match = re.search(r'(?<=v=)[^&#]+', youtube_link)
@@ -144,12 +145,14 @@ def download_youtube_link(request):
             filesize_mb = yt_stream.filesize / (1024 * 1024)
             context['filesize'] = f"{filesize_mb:.2f} MB"
             
+            
             if not os.path.exists(path):
                 os.makedirs(path)
             yt_stream.download(path)
 
         else:
             context['error'] = '유효하지 않은 YouTube 링크입니다.'
+            
 
     return render(request, 'home/upload_media.html', context)
 

@@ -1,355 +1,407 @@
-
-
 {% extends './base_other.html' %} {% block main_other %}
 <style>
-@font-face {
-  font-family: "SCDream2";
-  src: url("/static/fonts/SCDream2.woff") format("woff");
-}
+    @font-face {
+        font-family: 'SCDream2';
+        src: url('/static/fonts/SCDream2.woff') format('woff');
+    }
 
-/* upload_media.html에만 적용되는 스타일 */
-.dream-font-style {
-  font-family: "SCDream2", sans-serif;
-}
+    /* upload_media.html에만 적용되는 스타일 */
+    .dream-font-style {
+        font-family: 'SCDream2', sans-serif;
+    }
 </style>
 
-  <div
-    class="section section-header cd-section"
-    id="headers"
-    style="padding: 0"
-  >
+<div class="section section-header cd-section" id="headers" style="padding: 0">
     {% comment %}
     <link rel="stylesheet" href="{% static 'css/spinner.css' %}" />
     {% endcomment %}
 
     <!-- upload_media.html로 분리 -->
     <div class="header-1">
-      <!-- 간단 네비게이션 -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
-        <div class="container">
-          <a class="navbar-brand mb-0" href="/">너의 목소리가 보여</a>
-        </div>
-      </nav>
-      <div
-        class="page-header"
-        style="background-image: url('/static/img/sections/everything_1.jpg')"
-      >
-        <div class="filter"></div>
-        <div class="content-center">
-          <div class="container">
-            <style>
-              #loader {
-                bottom: 0;
-                height: 175px;
-                left: 0;
-                margin: auto;
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 175px;
-                display: none;
-              }
+        <!-- 간단 네비게이션 -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+            <div class="container">
+                <a class="navbar-brand mb-0" href="/">너의 목소리가 보여</a>
+            </div>
+        </nav>
+        <div
+            class="page-header"
+            style="
+                background-image: url('/static/img/sections/everything_1.jpg');
+            "
+        >
+            <div class="filter"></div>
+            <div class="content-center">
+                <div class="container">
+                    <style>
+                        #loader {
+                            bottom: 0;
+                            height: 175px;
+                            left: 0;
+                            margin: auto;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 175px;
+                            display: none;
+                        }
 
-              #loader .dot {
-                bottom: 0;
-                height: 100%;
-                left: 0;
-                margin: auto;
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 87.5px;
-              }
+                        #loader .dot {
+                            bottom: 0;
+                            height: 100%;
+                            left: 0;
+                            margin: auto;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 87.5px;
+                        }
 
-              #loader .dot::before {
-                border-radius: 100%;
-                content: "";
-                height: 87.5px;
-                left: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-                transform: scale(0);
-                width: 87.5px;
-              }
+                        #loader .dot::before {
+                            border-radius: 100%;
+                            content: '';
+                            height: 87.5px;
+                            left: 0;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            transform: scale(0);
+                            width: 87.5px;
+                        }
 
-              #loader .dot:nth-child(7n + 1) {
-                transform: rotate(45deg);
-              }
+                        #loader .dot:nth-child(7n + 1) {
+                            transform: rotate(45deg);
+                        }
 
-              #loader .dot:nth-child(7n + 1)::before {
-                animation: 0.8s linear 0.1s normal none infinite running load;
-                background: #00ff80 none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 1)::before {
+                            animation: 0.8s linear 0.1s normal none infinite
+                                running load;
+                            background: #00ff80 none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 2) {
-                transform: rotate(90deg);
-              }
+                        #loader .dot:nth-child(7n + 2) {
+                            transform: rotate(90deg);
+                        }
 
-              #loader .dot:nth-child(7n + 2)::before {
-                animation: 0.8s linear 0.2s normal none infinite running load;
-                background: #00ffea none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 2)::before {
+                            animation: 0.8s linear 0.2s normal none infinite
+                                running load;
+                            background: #00ffea none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 3) {
-                transform: rotate(135deg);
-              }
+                        #loader .dot:nth-child(7n + 3) {
+                            transform: rotate(135deg);
+                        }
 
-              #loader .dot:nth-child(7n + 3)::before {
-                animation: 0.8s linear 0.3s normal none infinite running load;
-                background: #00aaff none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 3)::before {
+                            animation: 0.8s linear 0.3s normal none infinite
+                                running load;
+                            background: #00aaff none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 4) {
-                transform: rotate(180deg);
-              }
+                        #loader .dot:nth-child(7n + 4) {
+                            transform: rotate(180deg);
+                        }
 
-              #loader .dot:nth-child(7n + 4)::before {
-                animation: 0.8s linear 0.4s normal none infinite running load;
-                background: #0040ff none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 4)::before {
+                            animation: 0.8s linear 0.4s normal none infinite
+                                running load;
+                            background: #0040ff none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 5) {
-                transform: rotate(225deg);
-              }
+                        #loader .dot:nth-child(7n + 5) {
+                            transform: rotate(225deg);
+                        }
 
-              #loader .dot:nth-child(7n + 5)::before {
-                animation: 0.8s linear 0.5s normal none infinite running load;
-                background: #2a00ff none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 5)::before {
+                            animation: 0.8s linear 0.5s normal none infinite
+                                running load;
+                            background: #2a00ff none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 6) {
-                transform: rotate(270deg);
-              }
+                        #loader .dot:nth-child(7n + 6) {
+                            transform: rotate(270deg);
+                        }
 
-              #loader .dot:nth-child(7n + 6)::before {
-                animation: 0.8s linear 0.6s normal none infinite running load;
-                background: #9500ff none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 6)::before {
+                            animation: 0.8s linear 0.6s normal none infinite
+                                running load;
+                            background: #9500ff none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 7) {
-                transform: rotate(315deg);
-              }
+                        #loader .dot:nth-child(7n + 7) {
+                            transform: rotate(315deg);
+                        }
 
-              #loader .dot:nth-child(7n + 7)::before {
-                animation: 0.8s linear 0.7s normal none infinite running load;
-                background: magenta none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 7)::before {
+                            animation: 0.8s linear 0.7s normal none infinite
+                                running load;
+                            background: magenta none repeat scroll 0 0;
+                        }
 
-              #loader .dot:nth-child(7n + 8) {
-                transform: rotate(360deg);
-              }
+                        #loader .dot:nth-child(7n + 8) {
+                            transform: rotate(360deg);
+                        }
 
-              #loader .dot:nth-child(7n + 8)::before {
-                animation: 0.8s linear 0.8s normal none infinite running load;
-                background: #ff0095 none repeat scroll 0 0;
-              }
+                        #loader .dot:nth-child(7n + 8)::before {
+                            animation: 0.8s linear 0.8s normal none infinite
+                                running load;
+                            background: #ff0095 none repeat scroll 0 0;
+                        }
 
-              #loader .lading {
-                background-image: url("../images/loading.gif");
-                background-position: 50% 50%;
-                background-repeat: no-repeat;
-                bottom: -40px;
-                height: 20px;
-                left: 0;
-                position: absolute;
-                right: 0;
-                width: 180px;
-              }
+                        #loader .lading {
+                            background-image: url('../images/loading.gif');
+                            background-position: 50% 50%;
+                            background-repeat: no-repeat;
+                            bottom: -40px;
+                            height: 20px;
+                            left: 0;
+                            position: absolute;
+                            right: 0;
+                            width: 180px;
+                        }
 
-              @keyframes load {
-                100% {
-                  opacity: 0;
-                  transform: scale(1);
-                }
-              }
+                        @keyframes load {
+                            100% {
+                                opacity: 0;
+                                transform: scale(1);
+                            }
+                        }
 
-              @keyframes load {
-                100% {
-                  opacity: 0;
-                  transform: scale(1);
-                }
-              }
-            </style>
+                        @keyframes load {
+                            100% {
+                                opacity: 0;
+                                transform: scale(1);
+                            }
+                        }
+                    </style>
 
-            <div class="row">
-              <div id="loader">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="lading"></div>
-              </div>
-              <div class="col-md-5">
-                <div>
-                  <form
-                    method="post"
-                    action="{% url 'download_youtube_link' %}"
-                    id="youtubeForm"
-                  >
-                    {% csrf_token %}
-                    <div class="input-group mb-3 dream-font-style">
-                      <input
-                        type="text"
-                        name="youtube_link"
-                        class="form-control mx-1"
-                        placeholder="Youtube 링크를 입력해 주세요."  
-                        aria-label="input-youtube-link"
-                        {% if is_attachment_processed %}disabled{% endif %} />
-                      <button
-                        class="btn btn-outline-neutral btn-round mx-1 dream-font-style"
-                        type="submit" 
-                        {% if is_attachment_processed %}disabled{% endif %}
-                      >
-                        제출
-                      </button>
-                    </div>
-                  </form>
+                    <div class="row">
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <div>
+                                <form
+                                    method="post"
+                                    action="{% url 'download_youtube_link' %}"
+                                    id="youtubeForm"
+                                >
+                                    {% csrf_token %}
+                                    <div
+                                        class="input-group mb-3 dream-font-style"
+                                    >
+                                        <input
+                                            type="text"
+                                            name="youtube_link"
+                                            class="form-control mx-1"
+                                            placeholder="Youtube 링크를 입력해 주세요."
+                                            aria-label="input-youtube-link"
+                                            {%
+                                            if
+                                            is_attachment_processed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                        />
+                                        <button
+                                            class="btn btn-outline-neutral btn-round mx-1 dream-font-style"
+                                            type="submit"
+                                            {%
+                                            if
+                                            is_attachment_processed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                        >
+                                            제출
+                                        </button>
+                                    </div>
+                                </form>
 
-                  {% if thumbnail_url %}
-                  <div class="thumbnail">
-                    <img
-                      src="{{ thumbnail_url }}"
-                      alt="YouTube Video Thumbnail"
-                    />
-                  </div>
-                  {% endif %} {% if error %}
-                  <p>{{ error }}</p>
-                  {% endif %} {% if title %}
-                  <p>제목: {{ title }}</p>
-                  {% endif %} {% if duration %}
-                  <p>길이: {{ duration }}</p>
-                  {% endif %} {% if filesize %}
-                  <p>파일 크기: {{ filesize }}</p>
-                  {% endif %} {% if error %}
-                  <p>{{ error }}</p>
-                  {% endif %}
+                                {% if task_id %}
+                                <div class="thumbnail">
+                                    <img
+                                        src="{{ thumbnail_url }}"
+                                        alt="YouTube Video Thumbnail"
+                                    />
+                                </div>
+                                {% endif %} {% if error %}
+                                <p>{{ error }}</p>
+                                {% endif %} {% if title %}
+                                <p>제목: {{ title }}</p>
+                                {% endif %} {% if duration %}
+                                <p>길이: {{ duration }}</p>
+                                {% endif %} {% if filesize %}
+                                <p>파일 크기: {{ filesize }}</p>
+                                {% endif %} {% if error %}
+                                <p>{{ error }}</p>
+                                {% endif %}
 
-                  <style>
-                    .thumbnail img {
-                      width: 100%;
-                      height: auto;
-                    }
-                  </style>
+                                <style>
+                                    .thumbnail img {
+                                        width: 100%;
+                                        height: auto;
+                                    }
+                                </style>
 
-                  <script>
-                    {% comment %} 
-                    [버튼 클릭]
-                      1. ajax 요청
-                      2. loader에 style에 display block 속성 추가
-                      3. button에 disable 속성 추가
-                     {% endcomment %}
-                    // 제출 버튼 클릭 이벤트 감지
-                    document
-                      .getElementById("youtubeForm")
-                      .addEventListener("submit", function () {
-                        document.getElementById("loader").style.display =
-                          "block"; // 스피너 표시
-                        document.getElementById("fileinput").setAttribute("disabled", "");
-                        document.getElementById("fileinput-box").setAttribute("disabled", "");
-                        // 여기에 스피너 활성화를 위한 JavaScript 코드
-                      });
-                    
-                    document.querySelector('.fileinput-new').addEventListener('click', function() {
-                      var submitButton = document.querySelector('#youtubeForm button[type="submit"]');
-                      if (submitButton) {
-                        submitButton.disabled = true;
-                      }
-                    });
+                                <script>
+                                    {% comment %}
+                                    [버튼 클릭]
+                                      1. ajax 요청
+                                      2. loader에 style에 display block 속성 추가
+                                      3. button에 disable 속성 추가
+                                     {% endcomment %}
+                                    // 제출 버튼 클릭 이벤트 감지
+                                    document
+                                      .getElementById("youtubeForm")
+                                      .addEventListener("submit", function () {
+                                        document.getElementById("loader").style.display =
+                                          "block"; // 스피너 표시
+                                        document.getElementById("fileinput").setAttribute("disabled", "");
+                                        document.getElementById("fileinput-box").setAttribute("disabled", "");
+                                        // 여기에 스피너 활성화를 위한 JavaScript 코드
+                                      });
 
-                    document.getElementById('fileinput').addEventListener('change', function() {
-                        // 파일이 첨부되었을 때 실행할 함수
-                        disableInputAndButton();
-                    });
+                                    document.querySelector('.fileinput-new').addEventListener('click', function() {
+                                      var submitButton = document.querySelector('#youtubeForm button[type="submit"]');
+                                      if (submitButton) {
+                                        submitButton.disabled = true;
+                                      }
+                                    });
 
-                    function disableInputAndButton() {
-                      // 입력 필드와 제출 버튼을 찾아서 비활성화
-                      var inputField = document.querySelector('.input-group .form-control');
-                      var submitButton = document.querySelector('.input-group button');
-                      
-                      inputField.disabled = true;
-                      submitButton.disabled = true;
-                  
-                      // CSS 클래스를 추가하여 스타일 변경
-                      inputField.classList.add('disabled-style');
-                      submitButton.classList.add('disabled-style');
-                    }
-                    
-                  </script>
+                                    document.getElementById('fileinput').addEventListener('change', function() {
+                                        // 파일이 첨부되었을 때 실행할 함수
+                                        disableInputAndButton();
+                                    });
 
-                  <!-- 영상 첨부 -->
-                  <div
-                    class="fileinput fileinput-new text-center"
-                    data-provides="fileinput"
-                  >
-                    <div class="fileinput-new thumbnail img-no-padding">
-                      <!--
+                                    function disableInputAndButton() {
+                                      // 입력 필드와 제출 버튼을 찾아서 비활성화
+                                      var inputField = document.querySelector('.input-group .form-control');
+                                      var submitButton = document.querySelector('.input-group button');
+
+                                      inputField.disabled = true;
+                                      submitButton.disabled = true;
+
+                                      // CSS 클래스를 추가하여 스타일 변경
+                                      inputField.classList.add('disabled-style');
+                                      submitButton.classList.add('disabled-style');
+                                    }
+                                </script>
+
+                                <!-- 첨부파일로 영상 첨부 -->
+                                <div
+                                    class="fileinput fileinput-new text-center"
+                                    data-provides="fileinput"
+                                >
+                                    <div
+                                        class="fileinput-new thumbnail img-no-padding"
+                                    >
+                                        <!--
                                         <img
                                             src="../../../static/img/image_placeholder.jpg"
                                             alt="..."
                                         />
                                         -->
-                    </div>
-                    
-                    <style>
-                      #fileinput:disabled, #fileinput-box[disabled] {
-                        background-color: gray;
-                        border-color:gray;
-                      }
-                      #fileinput-box[disabled] {
-                        opacity:1;                
-                      }
-                      #disabled-style {
-                        background-color: darkgray;
-                        border-color: darkgray;
-                      }
-                    </style>
-                    <div>
-                      <span class="btn btn-info btn-file dream-font-style" {% if is_youtube_processed %}disabled{% endif %}  id="fileinput-box" 
-                        ><span class="fileinput-new">영상 직접 첨부하기</span
-                        ><span class="fileinput-exists">영상 바꾸기</span
-                        ><input type="hidden" value="" name="..." />
-                        <!-- 동영상 파일 허용 accept="video/*" 속성 추가 -->
-                        <input type="file"  name="" accept="video/*"  id="fileinput" {% if is_youtube_processed %}disabled{% endif %}/>
-                      </span>
-                      <a
-                        href="javascript:;"
-                        class="btn btn-link btn-danger fileinput-exists btn-round"
-                        data-dismiss="fileinput"
-                        ><i class="fa fa-times"></i> 지우기</a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h5 class="description dream-font-style">너의 이름은 | 1:34:28 | 3.2GB</h5>
-                </div>
-              </div>
+                                    </div>
+                                    <style>
+                                        #fileinput:disabled,
+                                        #fileinput-box[disabled] {
+                                            background-color: gray;
+                                            border-color: gray;
+                                        }
+                                        #fileinput-box[disabled] {
+                                            opacity: 1;
+                                        }
+                                        #disabled-style {
+                                            background-color: darkgray;
+                                            border-color: darkgray;
+                                        }
+                                    </style>
+                                    <form
+                                        method="post"
+                                        action="{% url 'download_attachment' %}"
+                                    >
+                                        <div>
+                                            <span
+                                                class="btn btn-info btn-file dream-font-style"
+                                                {%
+                                                if
+                                                is_youtube_processed
+                                                %}disabled{%
+                                                endif
+                                                %}
+                                                id="fileinput-box"
+                                                ><span class="fileinput-new"
+                                                    >영상 직접 첨부하기</span
+                                                ><span class="fileinput-exists"
+                                                    >영상 바꾸기</span
+                                                ><input
+                                                    type="hidden"
+                                                    value=""
+                                                    name="..."
+                                                />
+                                                <!-- 동영상 파일 허용 accept="video/*" 속성 추가 -->
+                                                <input
+                                                    type="file"
+                                                    name="attachment_input"
+                                                    accept="video/*"
+                                                    id="fileinput"
+                                                    {%
+                                                    if
+                                                    is_youtube_processed
+                                                    %}disabled{%
+                                                    endif
+                                                    %}
+                                                />
+                                            </span>
+                                            <a
+                                                href="javascript:;"
+                                                class="btn btn-link btn-danger fileinput-exists btn-round"
+                                                data-dismiss="fileinput"
+                                                ><i class="fa fa-times"></i>
+                                                지우기</a
+                                            >
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="description dream-font-style">
+                                    너의 이름은 | 1:34:28 | 3.2GB
+                                </h5>
+                            </div>
+                        </div>
 
-              <div class="col-md-6 ml-auto">
-                <h2 class="title dream-font-style">영상 파일을 선택하세요</h2>
-                <h5 class="description dream-font-style">
-                  영상은 서버에 저장되지 않으니 안심하세요.
-                </h5>
-                <br />
-                <!-- a태그에 target="_blank" 속성 넣으면 새탭으로 넘어감-->
-                <a
-                  href="/select-language/"
-                  class="btn btn-outline-neutral btn-round btn-lg dream-font-style"
-                >
-                  다음
-                  <i class="nc-icon nc-minimal-right"></i>
-                </a>
-              </div>
+                        <div class="col-md-6 ml-auto">
+                            <h2 class="title dream-font-style">
+                                영상 파일을 선택하세요
+                            </h2>
+                            <h5 class="description dream-font-style">
+                                영상은 서버에 저장되지 않으니 안심하세요.
+                            </h5>
+                            <br />
+                            <!-- a태그에 target="_blank" 속성 넣으면 새탭으로 넘어감-->
+                            <a
+                                href="/select-language/"
+                                class="btn btn-outline-neutral btn-round btn-lg dream-font-style"
+                            >
+                                다음
+                                <i class="nc-icon nc-minimal-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  {% endblock %}
 </div>
+{% endblock %}

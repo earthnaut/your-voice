@@ -224,6 +224,7 @@ def download_youtube_link(request):
         # 유튜브 다운로드일 경우 youtube_id를 함께 가져와서 썸네일 사용
     task_id = request.GET.get('task_id')
     if task_id:
+        context = {'is_youtube_processed': True}
         # 저장된 video파일에서 정보 추출하기
         # 1. 제목
         task_dir = os.path.join(base_dir, task_id)

@@ -205,22 +205,12 @@
                                             class="form-control mx-1"
                                             placeholder="Youtube 링크를 입력해 주세요."
                                             aria-label="input-youtube-link"
-                                            {%
-                                            if
-                                            is_attachment_processed
-                                            %}disabled{%
-                                            endif
-                                            %}
+                                            {% if is_attachment_processed %}disabled{% endif %}
                                         />
                                         <button
                                             class="btn btn-outline-neutral btn-round mx-1 dream-font-style"
                                             type="submit"
-                                            {%
-                                            if
-                                            is_attachment_processed
-                                            %}disabled{%
-                                            endif
-                                            %}
+                                            {% if is_attachment_processed %}disabled{% endif %}
                                         >
                                             제출
                                         </button>
@@ -333,12 +323,7 @@
                                         <div>
                                             <span
                                                 class="btn btn-info btn-file dream-font-style"
-                                                {%
-                                                if
-                                                is_youtube_processed
-                                                %}disabled{%
-                                                endif
-                                                %}
+                                                {% if is_youtube_processed %} disabled {% endif %}
                                                 id="fileinput-box"
                                                 ><span class="fileinput-new"
                                                     >영상 직접 첨부하기</span
@@ -355,12 +340,8 @@
                                                     name="attachment_input"
                                                     accept="video/*"
                                                     id="fileinput"
-                                                    {%
-                                                    if
-                                                    is_youtube_processed
-                                                    %}disabled{%
-                                                    endif
-                                                    %}
+
+                                                    {% if is_youtube_processed %} disabled {% endif %}
                                                 />
                                             </span>
                                             <a

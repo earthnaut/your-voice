@@ -132,6 +132,7 @@ def download_video(request, video_id):
 
 
 from pytube import YouTube
+from moviepy.editor import VideoFileClip
 import os.path
 import re
 
@@ -156,14 +157,26 @@ def task_id_generate(request):
     pass
 
 
+# 작동 원리
+# 웹 /upload-media/에서 youtube링크 제출을 누름 
+# --> 폼을 제출하면 .html에서 action="{% url 'download_youtube_link' %}"가 작동됨
+# --> views.download_youtube_link가 돌아감
+# --> POST 요청이 왔으니 유튜브 저장 루트가 돌아감
+# --> 리턴으로 '/upload-media/youtube/?{query_params}'를 반환함 (이때 task_id와 youtube_id를 쿼리로 함께 전달)
+# --> urls.py에 /upload-media/youtube/로 연결된 views.download_youtuve_link가 한번 더 실행됨
+# --> task_id가 있을 경우, 정보 표시 루트가 돌아감
+# --> .html에서 {% if task_id %} 가 돌아가며 썸네일과 정보 등을 함께 표시함
+
 def download_youtube_link(request):
     context = {}
+    base_dir = os.path.join(os.path.abspath(__file__), os.pardir, os.pardir, 'model_results')
 
+    # 유튜브 저장 루트
     if request.method == 'POST':
         # 고유한 task_id 생성 및 파일 저장될 경로 설정
         task_id = str(uuid4())
-        base_dir = os.path.join(os.path.abspath(__file__), '../model_results')
         task_dir = os.path.join(base_dir, task_id)
+        os.makedirs(task_dir, exist_ok=True)
 
         context = {'is_youtube_processed': True}
         
@@ -171,7 +184,7 @@ def download_youtube_link(request):
         youtube_id_match = re.search(r'(?<=v=)[^&#]+', youtube_link)
         youtube_id_match = youtube_id_match or re.search(r'(?<=be/)[^/&#?]+', youtube_link)
         youtube_id = (youtube_id_match.group(0) if youtube_id_match else None)
-
+        
         if youtube_id:
             context['thumbnail_url'] = f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
 
@@ -191,18 +204,78 @@ def download_youtube_link(request):
                 os.makedirs(path)
             yt_stream.download(path)
 
-            # task_id를 쿼리 파라미터로 내보내기 --> HttpResponseRedirect 써야할지 redirect 써야할지 모르겠음
-            # HttpResponseRedirect 사용시
-            query_params = urlencode({'task_id': task_id})
-            return HttpResponseRedirect(f'/upload_media/?{query_params}')
-            # redirect 사용시
-            query_params = {'key1': 'value1', 'key2': 'value2'}
-            return redirect('your_next_view', **query_params)
-            # 이때 your_next_view는 django의 url 패턴에 등록된 뷰 이름임! 아 httpresponse 써야겠다!
+            # # task_id를 쿼리 파라미터로 내보내기 --> HttpResponseRedirect 써야할지 redirect 써야할지 모르겠음
+            # # HttpResponseRedirect 사용시
+            query_params = urlencode({'task_id': task_id, 'youtube_id': youtube_id})
+            return HttpResponseRedirect(f'/upload-media/youtube/?{query_params}')
+            # # redirect 사용시
+            # query_params = {'key1': 'value1', 'key2': 'value2'}
+            # return redirect('your_next_view', **query_params)
+            # # 이때 your_next_view는 django의 url 패턴에 등록된 뷰 이름임! 아 httpresponse 써야겠다!
 
         else:
             context['error'] = '유효하지 않은 YouTube 링크입니다.'
+    
+    # 정보 표시 루트
+        # task_id로 리다이렉션 되었을 때 할 작업 처리
+        # 유튜브 다운로드일 경우 youtube_id를 함께 가져와서 썸네일 사용
+    task_id = request.GET.get('task_id')
+    if task_id:
+        # 저장된 video파일에서 정보 추출하기
+        # 1. 제목
+        task_dir = os.path.join(base_dir, task_id)
+        task_name = os.listdir(task_dir)[0]
+        task_path = os.path.join(task_dir, task_name)
+        task_video = VideoFileClip(task_path)
+        context['task_id'] = task_id
+        context['title'] = task_name
+        context['filesize'] = f'{(os.path.getsize(task_path)  / (1024*1024)):.2f} MB' 
+        duration_seconds = task_video.duration
+        hours, remainder = divmod(duration_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        context['duration'] = f"{int(hours)}시 {int(minutes)}분 {int(seconds)}초"
+
+        # youtube_id에서 썸네일 추출하기
+        youtube_id = request.GET.get('youtube_id')
+        context['thumbnail_url'] = f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
+        return render(request, 'home/upload_media.html', context)
 
     return render(request, 'home/upload_media.html', context)
 
 
+def download_attachment(request):
+    base_dir = os.path.join(os.path.abspath(__file__), os.pardir, os.pardir, 'model_results')
+    context = {}
+
+    if request.method == 'POST':
+        context = {'is_attachment_processed': True}
+        # 고유한 task_id 생성 및 파일 저장될 경로 설정
+        task_id = str(uuid4())
+        task_dir = os.path.join(base_dir, task_id)
+        os.makedirs(task_dir, exist_ok=True)
+
+        task_file = request.FILES.get('attachment_input')
+        if task_file:
+            task_extension = task_file.name.split('.')[-1]
+            task_name = task_id + task_extension
+            task_path = os.path.join(task_dir, task_name)
+            # 파일 저장
+            with open(task_path, 'wb') as f:
+                for chunk in task_file.chunks():
+                    f.write(chunk)
+            
+            query_params = urlencode({'task_id': task_id})
+            return HttpResponseRedirect(f'/upload-media/attachment/?{query_params}')
+    # 정보 표시 루트
+       # 첨부파일 다운로드일 경우 youtube_id 가져오지 않고, task_video.get_frame(5) 사용하기
+        # # 비디오 파일 열기
+        # clip = VideoFileClip("your_video.mp4")
+
+        # # 5초에 대한 썸네일 가져오기
+        # thumbnail_frame = clip.get_frame(5)
+
+        # # 가져온 썸네일을 이미지 파일로 저장하거나 사용할 수 있음
+        # thumbnail_frame.save_frame("thumbnail.jpg")
+    task_id = request.GET.get('task_id')
+    if task_id:
+        pass

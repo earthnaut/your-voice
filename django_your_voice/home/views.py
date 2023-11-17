@@ -16,14 +16,30 @@ def upload_media(request):
     return render(request, "home/upload_media.html", {})
 
 
-from uuid import uuid4
-
-# uuid4는 무작위로 생성된 고유한 식별자(UUID)를 반환, 객체를 고유하게 식별하기 위한 용도
-
-
 def select_language(request):
-    print("A")
+    context = {}
+    task_id = request.GET.get("task_id")
+    if task_id:
+        # 다음 페이지로 이동하기 위한 쿼리 url
+        query_params = urlencode({"task_id": task_id})
+        context["next_url"] = f"/loading/?{query_params}"
 
+    if not task_id:
+        context["next_url"] = f"/invalid_path/"
+    return render(request, "home/select_language.html", {})
+
+
+# 모델예상시간 로딩바 구현
+#   POST 요청 --> 모델 실행 및 예상시간 계산
+#   GET 요청 --> 단순히 templates 렌더링
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from tqdm import tqdm
+import time
+
+
+@csrf_exempt
+def loading(request):
     # 모델 프로세스
     task_id = str(uuid4())
     proc = subprocess.Popen(
@@ -39,21 +55,6 @@ def select_language(request):
     # run.py가 종료됐는지 확인??? 여기서 확인하는게 맞나??? loading으로 가서 확인해야하는거아님???
     # if proc.returncode == 0:
     #     return render(request, 'home/result_download.html', {})
-
-    return render(request, "home/select_language.html", {})
-
-
-# 모델예상시간 로딩바 구현
-#   POST 요청 --> 모델 실행 및 예상시간 계산
-#   GET 요청 --> 단순히 templates 렌더링
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from tqdm import tqdm
-import time
-
-
-@csrf_exempt
-def loading(request):
     # 모델 실행 및 예상 시간 계산 : POST요청
     if request.method == "POST":
         # 이곳에 모델 추가
@@ -144,6 +145,7 @@ import re
 from django.http import HttpResponseRedirect
 from urllib.parse import urlencode
 from django.shortcuts import redirect
+from uuid import uuid4  # uuid4는 무작위로 생성된 고유한 식별자(UUID)를 반환, 객체를 고유하게 식별하기 위한 용도
 
 # 1. 고유 ID 만들어서 유튜브 저장 경로시 해당 ID 경로로 저장하게끔 하기
 #   task_id = str(uuid4())
@@ -329,3 +331,7 @@ def download_attachment(request):
         return render(request, "home/upload_media.html", context)
 
     return render(request, "home/upload_media.html", context)
+
+
+def invalid_path(request):
+    return render(request, "invalid_path.html", {})

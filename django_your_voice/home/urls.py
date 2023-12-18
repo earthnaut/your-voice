@@ -16,7 +16,8 @@ urlpatterns = [
     ),
     path(
         "upload-media/attachment/",
+        views.download_attachment,
         name="download_attachment",
     ),
-    path("invalid_path/", views.invalid_path, name="invalid_path"),
+    path("invalid-path/", views.invalid_path, name="invalid_path"),
 ]

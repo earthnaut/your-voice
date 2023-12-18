@@ -24,19 +24,23 @@
                 </h5>
                 <br/>
               </div>
+              <form method="" action="">
               <div class="col-md-8 col-8 ml-auto mr-auto">
                 <div class="card card-raised card-form-horizontal no-transition">
                   <div class="card-body">
-                    <form method="" action="">
                       <div class="row">
                         <div class="col-md-4 ml-auto mr-auto mb-3 mt-md-auto mb-md-auto">
+                          <label>
+                            <div class="bootstrap-switch-on bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" style="width: 72px;"><div class="bootstrap-switch-container" style="width: 122px; margin-left: 0px;"><span class="bootstrap-switch-handle-on bootstrap-switch-info" style="width: 50px;">ON</span><span class="bootstrap-switch-label" style="width: 26px;">&nbsp;</span><span class="bootstrap-switch-handle-off bootstrap-switch-info" style="width: 50px;">OFF</span><input type="checkbox" data-toggle="switch" checked="" data-on-color="info" data-off-color="info"></div></div><span class="toggle"></span>
+                          </label>
+                          <!--
                           <div class="form-check-radio" style="margin: 0">
                             <label class="form-check-label">
                               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked=""/>
                               대사 + 화자 + 배경음 묘사
                               <span class="form-check-sign"></span>
                             </label>
-                          </div>
+                          </div>-->
                         </div>
                         <div class="col-md-4 ml-auto mr-auto mb-3 mt-md-auto mb-md-auto">
                           <div class="form-check-radio" style="margin: 0">
@@ -58,17 +62,17 @@
                         </div>
                         <!-- <div class="col-md-4 mt-3 mt-sm-auto mb-sm-auto" > <a href="/loading/" class="btn btn-warning btn-round btn-lg btn-block" > 자막 생성하기 </a> </div>-->
                       </div>
-                    </form>
                   </div>
                 </div>
               </div>
               <div class="col-md-8 mt-2 ml-auto mr-auto">
                 <!-- button type="submit"으로 해야 제출하지 않나? a 태그도 쓰면서 이동하고싶은데 button에 a태그 넣으면 글자만 클릭 가능함... 게다가 이거 form 밖에 튀어나왔는데 괜찮은 거 맞나-->
-                <a href="/loading/" class="btn btn-outline-neutral btn-round btn-lg">
+                <button href="/loading/" class="btn btn-outline-neutral btn-round btn-lg" type="submit">
                   자막 생성하기
                   <i class="nc-icon nc-minimal-right"></i>
-                </a>
+                </button>
               </div>
+            </form>
             </div>
           </div>
         </div>

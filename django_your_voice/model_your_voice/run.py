@@ -3,55 +3,276 @@ import os
 import subprocess
 from pydub import AudioSegment
 
-base_dir = os.path.join(os.path.abspath(__file__), '../model_results')
 # os.path.abspath(__file__) 현재 스크립트의 절대 경로
 # os.path.join(...) 여러 경로를 안전하게 결합해주는 함수
 
-def main(task_id):
-    task_dir = os.path.join(base_dir, task_id)
-    # os.makedirs(task_dir, exist_ok=True)
-    # 이미 영상 다운로드 받는 과정에서 만들어지는 폴더여서 주석처리함
 
-    # 1번 2번은 이 run.py에 작성하고, 3번은 각각 .py 만들어서 subprocess로 동시진행 (비동기진행) 하도록 함
+def main():
+    print("run.py is RUNNING!!!")
+
+    # views.py에서 전달한 subprocess.Popen([리스트]) 받아오기
+    task_id = sys.argv[1]
+    speech_to_text = sys.argv[2]
+    diarization = sys.argv[3]
+    bgm_detection = sys.argv[4]
+
+    # os.path.abspath(__file__)는 현재 run.py의 path인 your/path/model_your_voice/run.py까지 포함
+    base_dir = os.path.join(os.path.abspath(__file__), "../../model_results")
+    task_dir = os.path.join(base_dir, task_id)
+
+    # 1번 2번은 이 run.py에 작성하고,
+    # 3번은 각각 .py 만들어서 subprocess로 동시진행 (비동기진행) 하도록 함
 
     # 0. 비디오 파일명을 유튜브 제목 -> task_id로 변경
-    video_name = os.listdir(task_dir)[0] # 여기에 '강아지.mp4' 이렇게 확장자 같이 들어가겠지?
-    video_extension = video_name.split['.'][0]
-    new_video_name = task_id + '.' + video_extension
-    old_video_name_path = os.path.join(task_dir, video_name)
-    new_video_name_path = os.path.join(task_dir, new_video_name)
-    os.rename(old_video_name_path, new_video_name_path)
-    
-    # 1. mp4 -> 음원파일로 변경 
-    task_audio_dir = os.path.join(task_dir, 'audio')
-    os.makedirs(task_audio_dir, exist_ok=True)
+    video_fullname = os.listdir(task_dir)[
+        0]  # 여기에 '햄스터 콧구멍.mp4' 이렇게 확장자 같이 들어감
+    video_extension = video_fullname.split(".")[-1]  # extention이면 -1해야하는거아님?
+    new_video_fullname = "video_origin." + video_extension
+    old_video_path = os.path.join(task_dir, video_fullname)
+    new_video_path = os.path.join(task_dir, new_video_fullname)
+    os.rename(old_video_path, new_video_path)
+
+    # 1. mp4 -> 음원파일로 변경
+    # task_audio_dir = os.path.join(task_dir, "audio")
+    # os.makedirs(task_audio_dir, exist_ok=True)
 
     # convert mp4에서 wav파일로 변환
-    audio_name = task_id + '.wav'
-    audio_path = os.path.join(task_audio_dir, audio_name)
-    audSeg = AudioSegment.from_file(new_video_name_path, format=video_extension)
-    audSeg.export(audio_path, format="wav")
+    # loading.html 창 늦게 열려 subprocess로 바꿈
+    proc_1 = subprocess.Popen(
+        [
+            "python",
+            "model_your_voice/1_model_video2audio.py",
+            f"{task_dir}",
+            f"{new_video_path}",
+            f"{video_extension}",
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=True,
+    )
 
-    # 2. 음원 -> (배경, 음성) 분리 os.path.join(task_dir, 'bgm'), os.path.join(task_dir, 'speech')
-    # 3. 태스크 진행 (비동기로 동시진행함)
-    #   3-1. 자막생성 os.path.join(task_dir, 'speech_to_text')
-    proc_1 = subprocess.Popen(['python', '/model_your_voice/model_speech_to_text.py', f"{task_id}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    # 1. 작업이 완료될 때까지 기다림 (비동기적 실행에 우선순위 부여)
+    proc_1.wait()
+
+    # 2. 음원 -> 배경음/목소리 분리 (동기적 shell 실행)
+    # os.path.join(task_dir, 'bgm'), os.path.join(task_dir, 'speech')
+    audio_path = os.path.join(task_dir, "audio_origin.wav")
+    command = f"spleeter separate -d 10800 -o {task_dir} {audio_path}"
+    # spleeter 최대 3시간 (10800초)
+    # subprocess.run(command, shell=True, check=True)
+
+    # spleeter 결과 파일 이름 바꾸기
+    # 배경음 -> audio_bgm.wav
+    # 목소리 -> audio_voice.wav
+
+    # 3. 자막 생성 모델 3개 (비동기로 동시진행)
+    # audio_bgm이랑 audio_voice 경로 알맞게 바꾸기 (spleeter 성공적으로 돌린다면!)
+    audio_bgm_path = os.path.join(task_dir, "audio_origin.wav")
+    audio_voice_path = os.path.join(task_dir, "audio_origin.wav")
+
+    # 3-1. 대사생성 os.path.join(task_dir, 'speech_to_text')
+    # voice 쪼갠 거 안쓰고 그냥 원본음원 씀
+    if speech_to_text == "on":
+        proc_3_1 = subprocess.Popen(
+            [
+                "python",
+                "model_your_voice/3_1_speech_to_text/whisper.py",
+                f"{task_dir}",
+                f"{audio_path}",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+
     #   3-2. 화자분리 os.path.join(task_dir, 'speaker_diarization')
-    proc_2 = subprocess.Popen(['python', '/model_your_voice/model_speaker_diarization.py', f"{task_id}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    # voice 쪼갠 거 안쓰고 그냥 원본음원 씀
+    # Pre-Emphasis 과정 포함하고있음
+    if diarization == "on":
+        proc_3_2 = subprocess.Popen(
+            [
+                "python",
+                "model_your_voice/3_2_speaker_diarization/nemo.py",
+                f"{task_dir}",
+                f"{audio_path}",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+
     #   3-3. 배경음악이벤트추출 os.path.join(task_dir, 'bgm_detection')
-    proc_3 = subprocess.Popen(['python', '/model_your_voice/model_bgm_detection.py', f"{task_id}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    # 4. 자막 합치기
-        # 만약에 1, 2, 3이 모두 끝났으면
+    # pydub 무음구간 제외해 자르는 과정 포함하고있음
+    if bgm_detection == "on":
+        proc_3_3 = subprocess.Popen(
+            [
+                "python",
+                "model_your_voice/3_3_bgm_detection/clap.py",
+                f"{task_dir}",
+                f"{audio_bgm_path}",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+
+    # 3. 의 세 모델이 완료될 때까지 기다림
+    proc_3_1.wait()
+    proc_3_2.wait()
+    proc_3_3.wait()
+    # 만약에 1, 2, 3이 모두 끝났으면
     # if proc_1 == 0 and proc_2 == 0 and proc_3 == 0:
-    #     pass        
+    #     pass
     # 이거 쓰지 말라고 하셨음!!!
     # 따로 txt를 만들어서 세개 모두 끝났을 때 txt에 done이 입력되도록 만들면
     # ajax가 done을 인식해서 만약 done일때 다음 템플릿으로 넘어감
-    
 
-if __name__ == '__main__':
-    main(sys.args[2])
+    # 종료함
+
+    # 4. 화자 정보 받기 (views.py에서 다른 함수로 이동해야 함)
+
+    # # 5. 자막 합치기
+
+    # 5-1. rttm -> ass 변환
+    import pyass
+    from pyass.script import Script
+    from datetime import timedelta
+
+    stt_rttm_path = os.path.join(task_dir, "speech_to_text.rttm")
+    diarization_rttm_path = os.path.join(task_dir, "speaker_diarization.rttm")
+    bgm_rttm_path = os.path.join(task_dir, "bgm_detection.rttm")
+
+    for rttm_file in [stt_rttm_path, diarization_rttm_path, bgm_rttm_path]:
+        _, file_fullname = os.path.split(rttm_file)
+        file_name, _ = os.path.splitext(file_fullname)
+
+        # 빈 리스트를 생성하여 데이터 저장
+        rttm_data = []
+
+        # RTTM 파일을 열고 데이터를 리스트에 추가
+        with open(rttm_file, "r") as file:
+            for line in file:
+                rttm_data.append(line.strip())
+
+        # ass 자막 스크립트 생성
+        script = Script(
+            scriptInfo=[(("", "Script generated by YOUR VOICE"),
+                         ("Title", f"{file_name}"))],
+            events=[],
+        )
+
+        # rttm --> ass 이벤트로 변경
+        for i in rttm_data:
+            # rttm 쪼개기
+            rttm_col = i.split()
+
+            # 이벤트 생성
+            start_sec = float(rttm_col[3]) * 1000  # 시작 시간 (밀리초)
+            end_sec = float(rttm_col[4]) * 1000 + start_sec  # 끝 시간 (밀리초)
+            content = " ".join(rttm_col[7:-2])  # 자막 내용
+
+            # 화자 이름이 정해졌을 때
+            # if speaker_name and content in speaker_dic:
+            #     # 자막 이벤트를 리스트에 추가
+            #     script.events.append(
+            #         pyass.Event(
+            #             format=pyass.EventFormat.
+            #             DIALOGUE,  # COMMENT는 주석 또는 설명이라 자막으로 안나옴
+            #             start=timedelta(milliseconds=start_sec),
+            #             end=timedelta(milliseconds=end_sec),
+            #             text=f"{speaker_dic[content]}",
+            #             # text=content
+            #         ))
+
+            # 이때 화자는 (), 배경음은 [] 씌우기
+            if "speaker_diarization" == file_name:
+                content = f"({content})"
+            elif "bgm_detection" == file_name:
+                content = f"[{content}]"
+
+            # 자막 이벤트를 리스트에 추가
+            script.events.append(
+                pyass.Event(
+                    format=pyass.EventFormat.
+                    DIALOGUE,  # COMMENT는 주석 또는 설명이라 자막으로 안나옴
+                    start=timedelta(milliseconds=start_sec),
+                    end=timedelta(milliseconds=end_sec),
+                    text=f"{content}",
+                ))
+
+        # 생성한 Script로 .ass 파일 저장
+        ass_path = os.path.join(task_dir, file_name + ".ass")
+        with open(ass_path, "w+", encoding="utf_8_sig") as file:
+            pyass.dump(script, file)
+
+    # 5-2. 3개의 ass 특정 위치에 합치기
+    import pyass
+    from pyass.script import Script
+
+    stt_ass_path = os.path.join(task_dir, "speech_to_text.ass")
+    diarization_ass_path = os.path.join(task_dir, "speaker_diarization.ass")
+    bgm_ass_path = os.path.join(task_dir, "bgm_detection.ass")
+
+    # 자막 화면 해상도
+    screen_width = 400
+    screen_height = 250
+
+    # ass 파일 열기
+    with open(diarization_ass_path, encoding="utf_8_sig") as speaker_ass:
+        speaker_script = pyass.load(speaker_ass)
+
+        with open(stt_ass_path, encoding="utf_8_sig") as text_ass:
+            text_script = pyass.load(text_ass)
+
+            with open(bgm_ass_path, encoding="utf_8_sig") as detection_ass:
+                detection_script = pyass.load(detection_ass)
+
+                # speaker_script의 이벤트 위치 설정
+                for event in speaker_script.events:
+                    # event.text = "{\\an1}" + event.text # 왼쪽 하단
+                    event.text = ("{\\pos(%d,%d)}" % (80, screen_height) +
+                                  event.text)  # 왼쪽 하단에서 200px 오른쪽
+
+                # text_script의 이벤트 위치 설정
+                for event in text_script.events:
+                    # event.text = "{\\an2}" + event.text# 중앙 하단
+                    event.text = ("{\\pos(%d,%d)}" %
+                                  (screen_width / 2, screen_height) +
+                                  event.text)  # 중앙 하단에서 200px 위쪽
+
+                # detection_script의 이벤트 위치 설정
+                for event in detection_script.events:
+                    # event.text = "{\\an2}" + event.text # 중앙 하단
+                    event.text = ("{\\pos(%d,%d)}" %
+                                  (screen_width / 2, screen_height - 20) +
+                                  event.text)  # 중앙 하단
+
+                # 합쳐진 이벤트 리스트 생성
+                combined_events = (speaker_script.events + text_script.events +
+                                   detection_script.events)
+
+                # 파일 이름
+                ass_final_path = os.path.join(task_dir, "closed_caption.ass")
+
+                # 새로운 .ass 파일을 생성하고 합쳐진 이벤트를 저장
+                with open(ass_final_path, "w+",
+                          encoding="utf_8_sig") as combine_ass:
+                    script = Script(
+                        scriptInfo=[(
+                            ("", "Script generated by YOUR VOICE"),
+                            ("Title", "Closed Caption"),
+                        )],
+                        events=combined_events,
+                    )
+
+                    pyass.dump(script, combine_ass)
+
+    # 6. task_id 폴더 삭제
+    import shutil
+
+    shutil.rmtree("path_to_directory")
+
+
+if __name__ == "__main__":
+    main()
     # args는 ['python', '/mymodel/run.py', f"{task_id}"]중에 두번째인 task_id를 받아옴!
-
-
-

@@ -64,8 +64,8 @@
                                             <h2 class="title">
                                                 자막을 생성하고 있습니다
                                             </h2>
-                                            <h5>너의 이름은 | 외국어</h5>
-                                            <h5>남은 예상시간 00시 00분</h5>
+                                            <h5>하울의 움직이는 성 | 대사 O | 화자 O | 배경음 O</h5>
+                                            <h5>남은 예상시간 00시 06분</h5>
                                             <br />
                                             <div
                                                 id="sliderRegular"
@@ -107,15 +107,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mt-5 text-left">
-                                            <a
-                                                href="/select-speaker/"
-                                                class="btn btn-outline-neutral btn-round btn-lg"
-                                            >
-                                                등장인물 이름 설정
-                                                <i
-                                                    class="nc-icon nc-minimal-right"
-                                                ></i>
-                                            </a>
+                                            <form method="post"> <!--action="{% url 'result_download' %}"-->
+                                                {% csrf_token %}
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-outline-neutral btn-round btn-lg"
+                                                >
+                                                    다음
+                                                    <i
+                                                        class="nc-icon nc-minimal-right"
+                                                    ></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -139,8 +142,8 @@
                                             <h2 class="title">
                                                 자막을 생성하고 있습니다
                                             </h2>
-                                            <h5>너의 이름은 | 외국어</h5>
-                                            <h5>남은 예상시간 00시 00분</h5>
+                                            <h5>하울의 움직이는 성 | 대사 O | 화자 O | 배경음 O</h5>
+                                            <h5>남은 예상시간 00시 06분</h5>
                                             <br />
                                             <div
                                                 id="sliderRegular"
@@ -184,15 +187,18 @@
                                         <div
                                             class="col-md-8 ml-auto mr-auto mt-5 text-center"
                                         >
-                                            <a
-                                                href="/select-speaker/"
+                                        <form method="post"> <!--action="{% url 'result_download' %}"-->
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
                                                 class="btn btn-outline-neutral btn-round btn-lg"
                                             >
-                                                등장인물 이름 설정
+                                                다음
                                                 <i
                                                     class="nc-icon nc-minimal-right"
                                                 ></i>
-                                            </a>
+                                            </button>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
@@ -216,8 +222,8 @@
                                             <h2 class="title">
                                                 자막을 생성하고 있습니다
                                             </h2>
-                                            <h5>너의 이름은 | 외국어</h5>
-                                            <h5>남은 예상시간 00시 00분</h5>
+                                            <h5>하울의 움직이는 성 | 대사 O | 화자 O | 배경음 O</h5>
+                                            <h5>남은 예상시간 00시 06분</h5>
 
                                             <br />
                                             <div
@@ -261,16 +267,21 @@
                                     <div class="row">
                                         <div
                                             class="col-md-7 ml-auto mt-5 text-right"
-                                        >
-                                            <a
-                                                href="/select-speaker/"
+                                        >   
+                                        <form method="post"> <!--action="{% url 'result_download' %}"-->
+                                            {% csrf_token %}
+                                            <!-- task_id를 다음 창에서도 열기 위해 숨겨진 필드로 추가하기-->
+                                            <!--<input type="hidden" name="task_id" value="{{ request.GET.task_id }}">-->
+                                            <button
+                                                type="submit"
                                                 class="btn btn-outline-neutral btn-round btn-lg"
                                             >
-                                                등장인물 이름 설정
+                                                다음
                                                 <i
                                                     class="nc-icon nc-minimal-right"
                                                 ></i>
-                                            </a>
+                                            </button>
+                                        </form>
                                             <div class="row">
                                                 <h6>
                                                     이곳에 예상시간 업데이트 될

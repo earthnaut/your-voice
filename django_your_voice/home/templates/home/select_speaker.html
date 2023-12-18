@@ -31,7 +31,13 @@
                                 알려주세요.
                             </h5>
                             <div class="row m-5"></div>
+                            <form method="post"> <!--action="{% url 'result_download' %}"-->
+                            {% csrf_token %}
+                            <!-- task_id를 다음 창에서도 열기 위해 숨겨진 필드로 추가하기-->
+                            <input type="hidden" name="task_id" value="{{ request.GET.task_id }}">
                             <!-- 이때 range는 speaker_num 화자 수-->
+                            <!-- 우선 예시 영상 때문에 1로 지정해놓음-->
+                            <!-- 첫번째 화자-->
                             {% for i in speaker_num %}
                             <div class="row" id="speaker_1">
                                 <div class="col-md-4">
@@ -55,7 +61,7 @@
                                                     "
                                                 >
                                                     <source
-                                                        src="../../../static/video/kokuriko.mp4"
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_늙은소피1.mp4"
                                                         type="video/mp4"
                                                     />
                                                     <!-- 이떄 scr는 {{ video.video_file.url }}-->
@@ -87,8 +93,7 @@
                                                 첫번째 대사
                                             </h5>
                                             <p class="card-description">
-                                                다치지 말고 멀쩡히 돌아오도록
-                                                해. <br />
+                                                이게 성이야? <br />
                                             </p>
                                         </div>
                                     </div>
@@ -118,7 +123,7 @@
                                                     "
                                                 >
                                                     <source
-                                                        src="../../../static/video/kokuriko.mp4"
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_늙은소피2.mp4"
                                                         type="video/mp4"
                                                     />
                                                     <!-- 이떄 scr는 {{ video.video_file.url }}-->
@@ -131,7 +136,7 @@
                                                 두번째 대사
                                             </h5>
                                             <p class="card-description">
-                                                이 고로케는 뭐야?
+                                                하올이야?
                                                 <br />
                                             </p>
                                         </div>
@@ -161,7 +166,7 @@
                                                     "
                                                 >
                                                     <source
-                                                        src="../../../static/video/kokuriko.mp4"
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_늙은소피3.mp4"
                                                         type="video/mp4"
                                                     />
                                                     <!-- 이떄 scr는 {{ video.video_file.url }}-->
@@ -174,7 +179,175 @@
                                                 세번째 대사
                                             </h5>
                                             <p class="card-description">
-                                                이곳에 날 데려와줘서 고마워.<br />
+                                                늙은 애미를 보내는 못된 아들이에요.<br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="description">화자 {{ i }}의 이름</h3>
+                                <div
+                                    class="col-sm-4 ml-auto mr-auto"
+                                    style="padding-top: 20px"
+                                >
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            value=""
+                                            placeholder="이름"
+                                            class="form-control no-border"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-5"></div>
+                            <hr
+                                style="border-top: 1px solid #fff; opacity: 0.3"
+                            />
+                            <div class="row m-5"></div>
+                            <!-- 두번째 화자-->
+                            <div class="row" id="speaker_1">
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div class="card-image">
+                                            <a href="javascript:;">
+                                                <!--
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_2.jpg"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
+                                                    style="
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
+                                                    "
+                                                >
+                                                    <source
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_하울1.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
+                                                <!--
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_1.jpg"
+                                                />
+                                                <i
+                                                    class="nc-icon nc-button-play"
+                                                    style="
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(
+                                                            -50%,
+                                                            -50%
+                                                        );
+                                                        font-size: 60px;
+                                                        color: white;
+                                                    "
+                                                ></i>-->
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                첫번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                내 친구를 너무 괴롭히지 않았으면 좋겠어. <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <!-- 재생 아이콘 추가하기 위해 position 속성 추가-->
+                                        <div
+                                            class="card-image"
+                                            style="position: relative"
+                                        >
+                                            <a href="javascript:;">
+                                                <!--
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_2.jpg"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
+                                                    style="
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
+                                                    "
+                                                >
+                                                    <source
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_하울2.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                두번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                황야의 마녀가 우리 집을 찾아 다니고 있어.
+                                                <br />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div
+                                            class="card-image"
+                                            style="position: relative"
+                                        >
+                                            <a href="javascript:;">
+                                                <!--
+                                                <img
+                                                    class="img img-raised"
+                                                    src="../../../static/img/sections/kokuriko_3.jpg"
+                                                />-->
+                                                <video
+                                                    controls
+                                                    class="img img-raised"
+                                                    style="
+                                                        display: flex;
+                                                        align-items: flex-start;
+                                                        justify-content: center;
+                                                        width: 100%;
+                                                        position: relative;
+                                                    "
+                                                >
+                                                    <source
+                                                        src="../../../static/video/하울의움직이는성_화자성택용_하울3.mp4"
+                                                        type="video/mp4"
+                                                    />
+                                                    <!-- 이떄 scr는 {{ video.video_file.url }}-->
+                                                    지원하지 않는 영상
+                                                </video>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                세번째 대사
+                                            </h5>
+                                            <p class="card-description">
+                                                저긴 소중한 은신처야.<br />
                                             </p>
                                         </div>
                                     </div>
@@ -209,15 +382,16 @@
                                     class="mr-auto ml-auto mt-5"
                                     style="margin-bottom: 100px"
                                 >
-                                    <a
-                                        href="/result-download/"
+                                    <button
+                                        type="submit"
                                         class="btn btn-outline-neutral btn-round btn-lg"
                                     >
                                         다음
                                         <i class="nc-icon nc-minimal-right"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
